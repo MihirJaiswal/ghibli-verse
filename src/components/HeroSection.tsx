@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const HeroSection = () => {
   return (
-    <div className="md:flex-1 bg-white/40 flex flex-col items-center justify-center text-center relative z-10 mx-2 p-4 md:mx-6 md:my-16 md:ml-56 border border-black shadow-lg">
+    <div className="md:flex-1 bg-white bg-clip-padding backdrop-filter z-30 backdrop-blur-sm bg-opacity-30 flex flex-col items-center justify-center text-center relative mx-2 p-4 md:mx-6 md:my-16 md:ml-56 border border-black shadow-lg">
       <motion.div
         className="flex items-center justify-center w-full mb-6"
         initial={{ scale: 0.9, opacity: 0 }}
@@ -22,7 +22,7 @@ const HeroSection = () => {
       </motion.div>
 
       <motion.h1 
-        className="text-4xl font-bold text-gray-900 mb-3"
+        className="text-4xl font-bold text-gray-900 mb-3 text-left"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
@@ -30,7 +30,7 @@ const HeroSection = () => {
         Welcome to Studio Ghibli
       </motion.h1>
       <motion.p 
-        className="text-md text-gray-900 mb-6"
+        className="text-md text-gray-900 mb-6 text-left"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.5 }}

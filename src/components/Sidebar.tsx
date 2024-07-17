@@ -11,8 +11,8 @@ function Sidebar() {
 
     return (
         <div>
-            <section className='fixed bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 border border-gray-700
- left-0 top-0 flex h-screen w-fit flex-col justify-between bg-n-8/90 border-r p-6 pt-24 text-white max-sm:hidden lg:w-[200px]'>
+            <section className='fixed bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 border border-gray-700
+             left-0 top-0 flex h-screen w-fit flex-col justify-between bg-n-8/90 border-r p-6 pt-24 text-white max-sm:hidden lg:w-[200px]'>
                 <div className='fixed h-screen inset-0 bg-cover bg-center blur-sm pointer-events-none flex items-center justify-center'></div>
                 <div className='flex flex-1 flex-col gap-5'>
                     {/* Add the title */}
