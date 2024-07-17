@@ -14,7 +14,7 @@ const LandingPage = () => {
       <div className="fixed inset-0 h-screen bg-blue-500 bg-cover bg-center opacity-30 blur-sm pointer-events-none flex items-center justify-center"></div>
 
       <Sidebar />
-      <div className="md:flex-1 bg-white/50 flex flex-col items-center justify-center text-cente relative z-10 mx-2 p-4 md:mx-6 md:my-16  md:ml-56 border border-black shadow-lg">
+      <div className="md:flex-1 bg-white/40 flex flex-col items-center justify-center text-cente relative z-10 mx-2 p-4 md:mx-6 md:my-16  md:ml-56 border border-black shadow-lg">
   <motion.div
     className="flex items-center justify-center w-full mb-6"
     initial={{ scale: 0.9, opacity: 0 }}
@@ -90,7 +90,7 @@ const LandingPage = () => {
         initial={{ x: 0 }}
         animate={{ x: '100vw' }} // Move from left to right across the screen
         transition={{ duration: 20, repeat: Infinity, ease: "linear", }} 
-        className='fixed top-0 right-0'
+        className='fixed top-0 left-0'
       >
         <Image src="/cloud2.png" alt="Mist" height={800} width={800} quality={100} className='opacity-40 blur-lg' />
       </motion.div>
@@ -109,7 +109,7 @@ const LandingPage = () => {
                     transition={{ duration: 0.7, delay: 0 }}
                     className='fixed bottom-28 right-12'
                 >
-                    <Image src="/totoro3.png" alt="" height={800} width={800} quality={100} className='w-full opacity-40 z-50' />
+                    <Image src="/totoro3.png" alt="" height={800} width={800} quality={100} className='md:w-56 w-48 opacity-30 md:opacity-60 z-50' />
                 </motion.div>
                 <motion.div
                     initial={{ opacity: 1 }}
@@ -117,7 +117,7 @@ const LandingPage = () => {
                     transition={{ duration: 0.7, delay: 0 }}
                     className='fixed bottom-0 left-0'
                 >
-                    <Image src="/land2.png" alt="" height={800} width={800} quality={100} className='w-full opacity-30 z-10' />
+                    <Image src="/land2.png" alt="" height={800} width={800} quality={100} className='w-full opacity-30' />
                 </motion.div>
     </div>
   );
