@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import { getMovies } from '../services/ghibli'; // Adjust the import path as needed
+import { getMovies } from '../../services/ghibli'; // Adjust the import path as needed
 
 const HeroMovie: React.FC = () => {
   const [movies, setMovies] = useState<any[]>([]);
@@ -64,40 +64,42 @@ const HeroMovie: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
-        <motion.h1
-          className="text-4xl md:text-6xl font-bold text-black mb-4"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-        >
-          {title}
-        </motion.h1>
-        <motion.p
-          className="text-lg md:text-xl text-gray-800 mb-4 max-w-2xl"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.7 }}
-        >
-          {showMore ? description : truncatedDescription}
-        </motion.p>
-        <motion.button
-          onClick={() => setShowMore((prev) => !prev)}
-          className="text-lg text-blue-800 underline mb-8"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.9 }}
-        >
-          {showMore ? 'Show Less' : 'Show More'}
-        </motion.button>
-        <motion.a
-          href={ctaLink}
-          className="px-6 py-3 bg-red-600 text-white text-lg font-bold rounded-lg shadow-lg"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 1.1 }}
-        >
-          {ctaText}
-        </motion.a>
+        <div className="relative flex flex-col justify-center items-center bg-white bg-clip-padding backdrop-filter z-30 backdrop-blur-sm bg-opacity-50 border border-2 p-4">
+          <motion.h1
+            className="text-4xl md:text-6xl font-bold text-black mb-4"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          >
+            {title}
+          </motion.h1>
+          <motion.p
+            className="text-lg md:text-xl text-gray-800 mb-4 max-w-2xl"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.7 }}
+          >
+            {showMore ? description : truncatedDescription}
+          </motion.p>
+          <motion.button
+            onClick={() => setShowMore((prev) => !prev)}
+            className="text-lg text-blue-800 underline mb-4"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.9 }}
+          >
+            {showMore ? 'Show Less' : 'Show More'}
+          </motion.button>
+          <motion.a
+            href={ctaLink}
+            className="px-6 py-3 bg-red-600 text-white text-lg font-bold rounded-lg shadow-lg"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 1.1 }}
+          >
+            Watch here
+          </motion.a>
+        </div>
       </motion.div>
       <button
         onClick={handlePrevious}

@@ -1,8 +1,8 @@
 // src/app/page.tsx
 'use client'
 import React, { useState, useEffect } from 'react';
-import MovieList from '../components/MovieList';
-import { getMovies } from '../services/ghibli';
+import MovieList from './MovieList';
+import { getMovies } from '../../services/ghibli';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 

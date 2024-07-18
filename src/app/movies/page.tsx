@@ -1,10 +1,10 @@
-import FeaturedMoviesSlider from '@/components/FeaturedMoviesSection'
+import FeaturedMoviesSlider from '@/components/movies/FeaturedMoviesSection'
 import Footer from '@/components/Footer'
 import HomeHeader from '@/components/HomeHeader'
-import Movie from '@/components/Movie'
+import Movie from '@/components/movies/Movie'
 import Sidebar from '@/components/Sidebar'
 import React from 'react'
-import HeroMovie from '@/components/HeroMovie'
+import HeroMovie from '@/components/movies/HeroMovie'
 
 const page = () => {
   return (

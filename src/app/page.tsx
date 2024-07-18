@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import HomeHeader from "@/components/HomeHeader";
 import InteractiveTimeline from "@/components/InteractiveTimeline";
 import LandingPage from "@/components/LandingPage";
-import HomePage from "@/components/Movie";
+import HomePage from "@/components/movies/Movie";
 import Sidebar from "@/components/Sidebar";
 import VideoGallery from "@/components/VideoGallery";
 import Image from "next/image";
