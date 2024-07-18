@@ -5,12 +5,13 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Image from 'next/image';
+import Link from 'next/link';
 import { getMovies } from '../../services/ghibli';
 
 interface Movie {
   id: string;
   title: string;
-  ratings: string;
+  rt_score: string;
   image: string;
 }
 
@@ -25,11 +26,9 @@ const FeaturedMoviesSlider: React.FC<FeaturedMoviesSliderProps> = ({ count }) =>
     const fetchMovies = async () => {
       try {
         const fetchedMovies: Movie[] = await getMovies(); // Ensure getMovies returns Movie[]
-        const randomIndexes = Array.from({ length: count }, () =>
-          Math.floor(Math.random() * fetchedMovies.length)
-        );
-        const selectedMovies = randomIndexes.map((index) => fetchedMovies[index]);
-        setFeaturedMovies(selectedMovies);
+        const sortedMovies = fetchedMovies.sort((a, b) => parseInt(b.rt_score) - parseInt(a.rt_score));
+        const topMovies = sortedMovies.slice(0, count);
+        setFeaturedMovies(topMovies);
       } catch (error) {
         console.error("Error fetching movies:", error);
       }
@@ -72,23 +71,29 @@ const FeaturedMoviesSlider: React.FC<FeaturedMoviesSliderProps> = ({ count }) =>
 
   return (
     <div className="mt-32 md:mt-20 md:mx-6 bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 relative border border-black p-8 mx-2">
-      <h2 className="text-2xl md:text-left text-center  font-bold mb-4">Featured Movies</h2>
+      <h2 className="text-2xl md:text-left text-center font-bold mb-4">Featured Movies</h2>
       <div className="">
         <Slider {...settings}>
           {featuredMovies.map((movie) => (
-            <div key={movie.id} className=" p-4 mx-2">
-              <div className="relative w-full h-56 mb-2">
-                <Image
-                  src={movie.image} // Example: Update with actual poster URL
-                  alt={`${movie.title} Poster`}
-                  layout="fill"
-                  objectFit=""
-                  className="object-contain"
-                />
+            <Link href={`/movies/${movie.id}`} key={movie.id} passHref>
+              <div className="p-4 mx-2 cursor-pointer">
+                <div className="relative w-full h-56 mb-2">
+                  <Image
+                    src={movie.image}
+                    alt={`${movie.title} Poster`}
+                    layout="fill"
+                    objectFit="contain"
+                    className="object-contain rounded-lg"
+                  />
+                </div>
+                <h3 className="text-lg font-bold mb-1 text-center">{movie.title}</h3>
+                <p className="text-sm text-gray-600 text-center flex items-center justify-center gap-1">
+                  Rotten Tomatoes
+                  <Image src='/Rotten_Tomatoes.svg' alt='rotten tomatoes svg' width={20} height={20} />
+                  : <span className='font-semibold'>{movie.rt_score}</span>
+                </p>
               </div>
-              <h3 className="text-lg font-bold mb-1 text-center">{movie.title}</h3>
-              <p className="text-sm text-gray-600 text-center">Ratings: {movie.ratings}</p>
-            </div>
+            </Link>
           ))}
         </Slider>
       </div>

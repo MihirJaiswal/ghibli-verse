@@ -10,6 +10,7 @@ const HeroMovie: React.FC = () => {
   const [movies, setMovies] = useState<any[]>([]);
   const [currentIndex, setCurrentIndex] = useState(10);
   const [showMore, setShowMore] = useState(false);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -27,19 +28,22 @@ const HeroMovie: React.FC = () => {
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % movies.length);
     setShowMore(false);
+    setIsImageLoaded(false);
   };
 
   const handlePrevious = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + movies.length) % movies.length);
     setShowMore(false);
+    setIsImageLoaded(false);
   };
 
   if (movies.length === 0) {
     return <div>Loading...</div>;
   }
 
-  const { title, description, movie_banner, image, ctaLink, ctaText } = movies[currentIndex];
+  const { title, description, movie_banner, image, ctaLink, ctaText, rt_score } = movies[currentIndex];
   const truncatedDescription = description.split(' ').slice(0, 20).join(' ') + '...';
+  const mobileTruncatedDescription = description.split(' ').slice(0, 60).join(' ') + '...';
 
   return (
     <div className="relative md:w-[96%] h-[82vh] bg-gray-900 text-white border-2 border-gray-100 mt-28 md:mt-16 flex items-center justify-center mx-2 md:mx-6">
@@ -50,6 +54,7 @@ const HeroMovie: React.FC = () => {
           layout="fill"
           quality={100}
           className="opacity-100 object-cover hidden md:block"
+          onLoadingComplete={() => setIsImageLoaded(true)}
         />
         <Image
           src={image}
@@ -57,52 +62,64 @@ const HeroMovie: React.FC = () => {
           layout="fill"
           quality={100}
           className="opacity-100 object-cover md:hidden"
+          onLoadingComplete={() => setIsImageLoaded(true)}
         />
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
       </div>
-      <motion.div
-        className="absolute inset-0 flex flex-col items-center justify-center text-center p-8"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-      >
-        <div className="relative flex flex-col justify-center items-center bg-white bg-opacity-70 border-2 p-6">
-          <motion.h1
-            className="text-3xl md:text-6xl font-bold text-black mb-4"
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-          >
-            {title}
-          </motion.h1>
-          <motion.p
-            className="md:text-lg text-sm  text-gray-800 mb-4 max-w-2xl mt-2 text-justify"
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.7 }}
-          >
-            {showMore ? description : truncatedDescription}
-          </motion.p>
-          <motion.button
-            onClick={() => setShowMore((prev) => !prev)}
-            className="text-lg text-blue-800 underline mb-4"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.9 }}
-          >
-            {showMore ? 'Show Less' : 'Show More'}
-          </motion.button>
-          <motion.a
-            href={ctaLink}
-            className="px-6 py-3 bg-red-600 text-white text-lg font-bold rounded-lg shadow-lg"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 1.1 }}
-          >
-            Watch Now
-          </motion.a>
-        </div>
-      </motion.div>
+      {!isImageLoaded && <div className="absolute inset-0 flex items-center justify-center text-white">Loading...</div>}
+      {isImageLoaded && (
+        <motion.div
+          className="absolute inset-0 flex flex-col items-center justify-center text-center p-8"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <div className="relative flex flex-col justify-center items-center bg-white bg-opacity-70 border-2 p-6">
+            <motion.h1
+              className="text-3xl md:text-6xl font-bold text-black mb-4"
+              initial={{ opacity: 0, y: -50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.5 }}
+            >
+              {title}
+            </motion.h1>
+            <motion.div
+              className="text-lg md:text-2xl font-bold text-red-600 mb-2 flex items-center justify-center gap-2"
+              initial={{ opacity: 0, y: -50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.6 }}
+            >
+              <Image src='/Rotten_Tomatoes.svg' alt='rt score' width={25} height={25} /> <span>: {rt_score}</span>
+            </motion.div>
+            <motion.p
+              className="md:text-lg text-sm text-gray-800 mb-4 max-w-2xl mt-2 text-justify"
+              initial={{ opacity: 0, y: -50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.7 }}
+            >
+              {showMore ? description : window.innerWidth < 768 ? mobileTruncatedDescription : truncatedDescription}
+            </motion.p>
+            <motion.button
+              onClick={() => setShowMore((prev) => !prev)}
+              className="text-lg text-blue-800 underline mb-4 hidden md:block"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.9 }}
+            >
+              {showMore ? 'Show Less' : 'Show More'}
+            </motion.button>
+            <motion.a
+              href={ctaLink}
+              className="px-6 py-3 bg-red-600 text-white text-lg font-bold rounded-lg shadow-lg"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 1.1 }}
+            >
+              Watch Now
+            </motion.a>
+          </div>
+        </motion.div>
+      )}
       <button
         onClick={handlePrevious}
         className="absolute left-4 md:left-8 top-1/2 transform -translate-y-1/2 bg-gray-100 text-black p-2 rounded-full"
