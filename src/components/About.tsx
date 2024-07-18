@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const AboutUs = () => {
   return (
-    <div className="flex flex-col items-center justify-center bg-white  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border border-black px-4 mx-2 md:px-8 md:ml-56 md:mr-6 relative py-20 mt-2">
+    <div className="flex flex-col items-center justify-center bg-white  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border border-black px-4 mx-2 md:px-8 md:ml-6 md:mr-6 relative py-20 mt-2">
       <motion.div
         className="text-center mb-12"
         initial={{ opacity: 0, y: -50 }}

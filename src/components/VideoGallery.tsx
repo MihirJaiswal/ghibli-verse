@@ -21,7 +21,7 @@ const VideoGallery = () => {
   }, [selectedVideo]);
 
   return (
-    <div className="flex relative flex-col md:flex-row min-h-screen w-full p-2 md:p-4 md:pl-56">
+    <div className="flex relative flex-col md:flex-row min-h-screen w-full p-2 md:p-4 ">
       {/* Video Section */}
       <div className="md:flex-1 flex items-center justify-center bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border-r md:border-b border-t border-l border-black p-6  shadow-lg md:max-w-3/4 md:my-16">
         <motion.video

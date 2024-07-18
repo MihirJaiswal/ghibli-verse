@@ -71,7 +71,7 @@ const FeaturedMoviesSlider: React.FC<FeaturedMoviesSliderProps> = ({ count }) =>
   };
 
   return (
-    <div className="mt-32 md:mt-20 md:ml-56 md:mr-6 bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 relative border border-black p-8 mx-2">
+    <div className="mt-32 md:mt-20 md:mx-6 bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 relative border border-black p-8 mx-2">
       <h2 className="text-2xl md:text-left text-center  font-bold mb-4">Featured Movies</h2>
       <div className="">
         <Slider {...settings}>

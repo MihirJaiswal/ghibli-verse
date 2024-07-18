@@ -1,27 +1,33 @@
-// src/app/page.tsx or src/pages/index.tsx
+// src/pages/index.tsx or src/app/page.tsx
 
 import AboutUs from "@/components/About";
 import Footer from "@/components/Footer";
 import HomeHeader from "@/components/HomeHeader";
 import InteractiveTimeline from "@/components/InteractiveTimeline";
 import LandingPage from "@/components/LandingPage";
-import HomePage from "@/components/movies/Movie";
 import Sidebar from "@/components/Sidebar";
 import VideoGallery from "@/components/VideoGallery";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen w-full bg-bg1 bg-cover bg-center bg-no-repeat">
-      <div className='fixed h-screen inset-0 bg-bg2 bg-cover bg-center opacity-30 blur-sm pointer-events-none flex items-center justify-center'></div>
-      <div className="fixed inset-0 h-screen bg-bg2 bg-cover bg-center opacity-80 blur-sm pointer-events-none flex items-center justify-center"></div>
-      <div className="fixed inset-0 h-screen bg-blue-500 bg-cover bg-center opacity-30 blur-sm pointer-events-none flex items-center justify-center"></div>
-       <HomeHeader/>
-        <LandingPage/>
-        <AboutUs/>
-        <VideoGallery/>
-        <InteractiveTimeline/>
-        <Footer/>
+    <div className="relative min-h-screen bg-bg1 bg-cover bg-center bg-no-repeat">
+      {/* Background overlays */}
+      <div className='fixed inset-0 bg-bg2 bg-cover bg-center opacity-30 blur-sm pointer-events-none'></div>
+      <div className="fixed inset-0 bg-bg2 bg-cover bg-center opacity-80 blur-sm pointer-events-none"></div>
+      <div className="fixed inset-0 bg-blue-500 bg-cover bg-center opacity-30 blur-sm pointer-events-none"></div>
+      
+      <div className="flex h-screen">
+        <Sidebar />
+        <main className="flex-1 overflow-y-auto">
+          <HomeHeader />
+          <LandingPage />
+          <AboutUs />
+          <VideoGallery />
+          <InteractiveTimeline />
+          <Footer />
+        </main>
+      </div>
     </div>
   );
 }

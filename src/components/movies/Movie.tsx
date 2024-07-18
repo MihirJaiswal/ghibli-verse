@@ -24,7 +24,7 @@ const Movie = () => {
   }, []);
 
   return (
-    <div className="min-h-screen md:ml-56 mx-2 md:mr-6 2">
+    <div className="min-h-screen mx-2 md:mx-6 2">
       <main className="relative p-6 bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border border-black my-16">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
