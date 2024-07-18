@@ -4,6 +4,7 @@ import HomeHeader from '@/components/HomeHeader'
 import Movie from '@/components/Movie'
 import Sidebar from '@/components/Sidebar'
 import React from 'react'
+import HeroMovie from '@/components/HeroMovie'
 
 const page = () => {
   return (
@@ -14,6 +15,13 @@ const page = () => {
            <div className='fixed h-screen inset-0 bg-bg3 bg-cover bg-center opacity-60 blur-sm pointer-events-none flex items-center justify-center'></div>
         <HomeHeader/>
         <Sidebar/>
+        <HeroMovie
+        title="Spirited Away"
+        description="Experience the magical journey of Chihiro in Studio Ghibli's masterpiece, Spirited Away."
+        backgroundImage="/bg1.png"
+        ctaLink="/movies/spirited-away"
+        ctaText="Watch Now"
+      />
         <FeaturedMoviesSlider count={5} />
         <Movie/>
         <Footer/>
