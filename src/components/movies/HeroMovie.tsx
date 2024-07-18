@@ -1,5 +1,4 @@
-// src/components/HeroMovie.tsx
-'use client';
+'use client'
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -11,6 +10,31 @@ const HeroMovie: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(10);
   const [showMore, setShowMore] = useState(false);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+  const youtubeLinks = [
+    "https://www.youtube.com/watch?v=iwROgK94zcM",  
+    "https://www.youtube.com/watch?v=4vPeTSRd580",  
+    "https://www.youtube.com/watch?v=92a7Hj0ijLs",
+    "https://www.youtube.com/watch?v=4bG17OYs-GA", 
+    "https://www.youtube.com/watch?v=OfkQlZArxw0", 
+    "https://www.youtube.com/watch?v=3LRyNwYg1f8",  
+    "https://www.youtube.com/watch?v=_7cowIHjCD4", 
+    "https://www.youtube.com/watch?v=0pVkiod6V0U",   
+    "https://www.youtube.com/watch?v=4OiMOHRDs14",  
+    "https://www.youtube.com/watch?v=1C9ujuCPlnY",  
+    "https://www.youtube.com/watch?v=ByXuk9QqQkk",  
+    "https://www.youtube.com/watch?v=Gp-H_YOcYTM",  
+    "https://www.youtube.com/watch?v=iwROgK94zcM&t=1s",  
+    "https://www.youtube.com/watch?v=8hxYx3Jq3kI",  
+    "https://www.youtube.com/watch?v=CsR3KVgBzSM",  
+    "https://www.youtube.com/watch?v=9CtIXPhPo0g",  
+    "https://www.youtube.com/watch?v=9nzpk_Br6yo",  
+    "https://www.youtube.com/watch?v=PhHoCnRg1Yw",  
+    "https://www.youtube.com/watch?v=W71mtorCZDw",  
+    "https://www.youtube.com/watch?v=jjmrxqcQdYg", 
+    "https://www.youtube.com/watch?v=Sw7BggqBpTk", 
+    "https://www.youtube.com/watch?v=_PfhotgXEeQ"
+  ];
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -41,7 +65,8 @@ const HeroMovie: React.FC = () => {
     return <div>Loading...</div>;
   }
 
-  const { title, description, movie_banner, image, ctaLink, ctaText, rt_score } = movies[currentIndex];
+  const { title, description, movie_banner, image, rt_score } = movies[currentIndex];
+  const youtubeLink = youtubeLinks[currentIndex];
   const truncatedDescription = description.split(' ').slice(0, 20).join(' ') + '...';
   const mobileTruncatedDescription = description.split(' ').slice(0, 60).join(' ') + '...';
 
@@ -109,13 +134,15 @@ const HeroMovie: React.FC = () => {
               {showMore ? 'Show Less' : 'Show More'}
             </motion.button>
             <motion.a
-              href={ctaLink}
+              href={youtubeLink}
               className="px-6 py-3 bg-red-600 text-white text-lg font-bold rounded-lg shadow-lg"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 1.1 }}
+              target="_blank" // Open link in new tab
+              rel="noopener noreferrer" // Ensure security
             >
-              Watch Now
+              Watch Trailer
             </motion.a>
           </div>
         </motion.div>

@@ -13,7 +13,7 @@ function Sidebar() {
     return (
         <div className="sticky left-0 top-0 h-screen max-sm:hidden lg:w-[200px]">
             <section className="bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 border border-gray-700 h-full overflow-y-auto p-6 pt-24 text-white">
-                <div className="flex flex-col items-center mb-4">
+                <div className="flex flex-col items-center mb-8">
                     <Image src="/log.png" alt="Sidebar Image" width={80} height={80} className="rounded-full mb-4" />
                     <h1 className="text-xl font-bold text-black">Ghibli-Verse</h1>
                 </div>
