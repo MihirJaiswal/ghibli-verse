@@ -1,21 +1,32 @@
+import Image from 'next/image';
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="bg-pink-100 text-gray-800 py-8 px-4 relative mt-16 z-50">
+    <footer className="bg-pink-100 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 text-gray-800 py-8 px-4 relative mt-16 z-50 border-t border-black">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
         <div className="mb-4 md:mb-0 text-center md:text-left">
-          <h3 className="text-2xl font-bold mb-2">Ghibli Verse</h3>
-          <p className="text-sm">Exploring the magical world of Studio Ghibli</p>
+          <div className='flex flex-col items-center gap-2'>
+          <Image
+            src="/log.png"
+            alt="Ghibli Logo"
+            width={1920}
+            height={1080}
+            quality={100}
+            className="object-cover w-10"
+          /> 
+           <h3 className="text-2xl font-bold mb-2">Ghibli Verse</h3>
+          </div>
+          <p className="text-xs">Explore the magical world of Studio Ghibli</p>
         </div>
         <div className="flex space-x-4 mb-4 md:mb-0">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:text-pink-800">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-pink-800">
             <FaFacebook size={24} />
           </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:text-pink-800">
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-pink-800">
             <FaTwitter size={24} />
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:text-pink-800">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-pink-800">
             <FaInstagram size={24} />
           </a>
         </div>
