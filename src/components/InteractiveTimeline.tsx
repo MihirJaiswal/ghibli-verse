@@ -26,9 +26,9 @@ const InteractiveTimeline = () => {
 
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
-    slidesToShow: 3.5,
+    slidesToShow: 3,
     slidesToScroll: 1,
     centerMode: true,
     centerPadding: '0',

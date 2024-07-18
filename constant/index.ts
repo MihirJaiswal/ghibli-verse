@@ -3,22 +3,22 @@ export const sidebarLinks = [
     {
         label: 'Home',
         imgUrl : "/home.svg",   
-        route:'/meet'
+        route:'/'
     },
     {
         label: 'Movies',
         imgUrl : "/movie.svg",   
-        route:'/meet/previous'
+        route:'/movies'
     },
     {
-        label: 'Location',
+        label: 'Locations',
         imgUrl : "/location.svg",   
-        route:'/meet/personal-room'
+        route:'/locations'
     },
     {
         label: 'Characters',
         imgUrl : "/people.svg",   
-        route:'/meet/recordings'
+        route:'/characters'
     },
    
 ]

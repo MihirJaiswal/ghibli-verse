@@ -19,6 +19,7 @@ const config = {
     },
     extend: {
       backgroundImage:{
+        "bg3":"url('/bg2.jpg')",
         "bg2":"url('/bg2.png')",
         "bg1":"linear-gradient(to right bottom, #667ee5, #6683e8, #6688ea, #678ded, #6892ef, #6691f1, #6590f2, #638ff4, #6087f4, #5e7ff4, #5f76f3, #616df2);",
       },

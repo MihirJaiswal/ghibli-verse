@@ -1,0 +1,24 @@
+import FeaturedMoviesSlider from '@/components/FeaturedMoviesSection'
+import Footer from '@/components/Footer'
+import HomeHeader from '@/components/HomeHeader'
+import Movie from '@/components/Movie'
+import Sidebar from '@/components/Sidebar'
+import React from 'react'
+
+const page = () => {
+  return (
+    <div className=''>
+         <div className="fixed bottom-0 h-10 z-40 w-full bg-yellow-300 bg-clip-padding backdrop-filter bg-opacity-5 text-white shadow-md hidden md:block border-t border-gray-600"></div>
+         <div className="fixed top-0 h-10 z-40 w-full bg-yellow-300 bg-clip-padding backdrop-filter bg-opacity-5 text-white shadow-md hidden md:block border-b border-gray-600"></div>
+           <div className='fixed h-screen inset-0 bg-bg1 bg-cover bg-center opacity-60 blur-sm pointer-events-none flex items-center justify-center'></div>
+           <div className='fixed h-screen inset-0 bg-bg3 bg-cover bg-center opacity-60 blur-sm pointer-events-none flex items-center justify-center'></div>
+        <HomeHeader/>
+        <Sidebar/>
+        <FeaturedMoviesSlider count={5} />
+        <Movie/>
+        <Footer/>
+    </div>
+  )
+}
+
+export default page

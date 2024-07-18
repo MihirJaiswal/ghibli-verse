@@ -1,14 +1,13 @@
 import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 interface Movie {
   id: string;
   title: string;
-  description: string;
   release_date: string;
-  director: string;
-  producer: string;
   image: string;
-  movie_banner: string;
 }
 
 interface MovieListProps {
@@ -17,19 +16,29 @@ interface MovieListProps {
 
 const MovieList: React.FC<MovieListProps> = ({ movies = [] }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 md:p-6">
       {movies.map((movie) => (
-        <div key={movie.id} className="bg-white shadow-md rounded-lg overflow-hidden">
-          <img src={movie.image} alt={movie.title} className="w-full h-64 object-cover" />
-          <div className="p-4">
-            <h2 className="text-xl font-bold mb-2">{movie.title}</h2>
-            <p className="text-gray-700 mb-2">{movie.description}</p>
-            <p className="text-gray-600">Release Date: {movie.release_date}</p>
-            <p className="text-gray-600">Director: {movie.director}</p>
-            <p className="text-gray-600">Producer: {movie.producer}</p>
-            <img src={movie.movie_banner} alt="" />
-          </div>
-        </div>
+        <Link href={`/movies/${movie.id}`} key={movie.id} passHref>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="cursor-pointer  overflow-hidden transition-transform transform bg-white p-2 bg-opacity-40 border border-gray-600"
+          >
+            <div className="relative w-full md:h-96 h-56">
+              <Image
+                src={movie.image}
+                alt={movie.title}
+                layout="fill"
+                objectFit="contain"
+                className="rounded-t-lg"
+              />
+            </div>
+            <div className="md:p-4">
+              <h3 className="md:text-xl text-lg font-bold text-gray-900 mb-2 mt-2 text-center">{movie.title}</h3>
+              <p className="text-gray-600 text-center text-sm md:text-base">Release Date: {movie.release_date}</p>
+            </div>
+          </motion.div>
+        </Link>
       ))}
     </div>
   );
