@@ -1,6 +1,9 @@
 // src/app/page.tsx or src/pages/index.tsx
 
+import AboutUs from "@/components/About";
+import Footer from "@/components/Footer";
 import HomeHeader from "@/components/HomeHeader";
+import InteractiveTimeline from "@/components/InteractiveTimeline";
 import LandingPage from "@/components/LandingPage";
 import HomePage from "@/components/Movie";
 import Sidebar from "@/components/Sidebar";
@@ -15,8 +18,10 @@ export default function Home() {
       <div className="fixed inset-0 h-screen bg-blue-500 bg-cover bg-center opacity-30 blur-sm pointer-events-none flex items-center justify-center"></div>
        <HomeHeader/>
         <LandingPage/>
+        <AboutUs/>
         <VideoGallery/>
-        <HomePage/>
+        <InteractiveTimeline/>
+        <Footer/>
     </div>
   );
 }
