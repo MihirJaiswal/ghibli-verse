@@ -42,29 +42,31 @@ const HeroMovie: React.FC = () => {
   const truncatedDescription = description.split(' ').slice(0, 20).join(' ') + '...';
 
   return (
-    <div className="relative md:w-[84%] h-[82vh] bg-whites/40 border border-black md:ml-56 mt-28 md:mt-16 flex items-center justify-center mx-2">
-      <Image
-        src={movie_banner}
-        alt={title}
-        layout="fill"
-        quality={100}
-        className="opacity-100 object-cover hidden md:block"
-      />
-      <Image
-        src={image}
-        alt={title}
-        layout="fill"
-        quality={100}
-        className="opacity-100 object-cover md:hidden"
-      />
-      <div className="absolute inset-0 bg-white bg-opacity-50"></div>
+    <div className="relative md:w-[84%] h-[82vh] bg-gray-900 text-white border-2 border-gray-100 md:ml-56 mt-28 md:mt-16 flex items-center justify-center mx-2">
+      <div className="absolute inset-0">
+        <Image
+          src={movie_banner}
+          alt={title}
+          layout="fill"
+          quality={100}
+          className="opacity-100 object-cover hidden md:block"
+        />
+        <Image
+          src={image}
+          alt={title}
+          layout="fill"
+          quality={100}
+          className="opacity-100 object-cover md:hidden"
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+      </div>
       <motion.div
         className="absolute inset-0 flex flex-col items-center justify-center text-center p-8"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
-        <div className="relative flex flex-col justify-center items-center bg-white bg-clip-padding backdrop-filter z-30 b bg-opacity-70 border border-black p-4">
+        <div className="relative flex flex-col justify-center items-center bg-white bg-opacity-70 border-2 p-6">
           <motion.h1
             className="text-4xl md:text-6xl font-bold text-black mb-4"
             initial={{ opacity: 0, y: -50 }}
@@ -74,7 +76,7 @@ const HeroMovie: React.FC = () => {
             {title}
           </motion.h1>
           <motion.p
-            className="text-lg md:text-xl text-gray-800 mb-4 max-w-2xl"
+            className="text-lg  text-gray-800 mb-4 max-w-2xl mt-2"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.7 }}
@@ -97,19 +99,19 @@ const HeroMovie: React.FC = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 1.1 }}
           >
-            Watch here
+            Watch Now
           </motion.a>
         </div>
       </motion.div>
       <button
         onClick={handlePrevious}
-        className="absolute left-4 md:left-8 md:bottom-1/2 bottom-4 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full"
+        className="absolute left-4 md:left-8 md:bottom-1/2 bottom-4 transform -translate-y-1/2 bg-gray-100 text-black p-2 rounded-full"
       >
         <FaArrowLeft size={24} />
       </button>
       <button
         onClick={handleNext}
-        className="absolute right-4 md:right-8 md:bottom-1/2 bottom-4 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full"
+        className="absolute right-4 md:right-8 md:bottom-1/2 bottom-4 transform -translate-y-1/2 bg-gray-100 text-black p-2 rounded-full"
       >
         <FaArrowRight size={24} />
       </button>

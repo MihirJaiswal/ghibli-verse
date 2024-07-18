@@ -24,7 +24,7 @@ function Sidebar() {
                         const isActive = pathname === link.route;
 
                         return (
-                            <Link href={link.route} key={link.label} className={cn("flex gap-3 items-center rounded-lg justify-start relative bg-transparent py-2.5 px-4 text-white transition-colors before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left before:scale-x-0 before:bg-white/50 before:transition-transform before:duration-300 before:content-[''] hover:text-white before:hover:scale-x-100", { 'bg-purple-1': isActive, })}>
+                            <Link href={link.route} key={link.label} className={cn("flex gap-3 items-center justify-start relative bg-transparent py-2.5 px-4 text-white transition-colors before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left before:scale-x-0 before:bg-white/50 before:transition-transform before:duration-300 before:content-[''] hover:text-white before:hover:scale-x-100", { 'bg-purple-1': isActive, 'bg-white': isActive })}>
                                 <Image src={link.imgUrl} alt={link.label} width={20} height={20} />
                                 <p className='text-md text-black font-semibold max-lg:hidden'>{link.label}</p>
                             </Link>
