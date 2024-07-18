@@ -1,27 +1,63 @@
 // src/components/HeroMovie.tsx
 'use client';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { getMovies } from '../services/ghibli'; // Adjust the import path as needed
 
-interface HeroMovieProps {
-  title: string;
-  description: string;
-  backgroundImage: string;
-  ctaLink: string;
-  ctaText: string;
-}
+const HeroMovie: React.FC = () => {
+  const [movies, setMovies] = useState<any[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showMore, setShowMore] = useState(false);
 
-const HeroMovie: React.FC<HeroMovieProps> = ({ title, description, backgroundImage, ctaLink, ctaText }) => {
+  useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        const moviesData = await getMovies();
+        setMovies(moviesData);
+      } catch (error) {
+        console.error('Error fetching movies:', error);
+      }
+    };
+
+    fetchMovies();
+  }, []);
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % movies.length);
+    setShowMore(false);
+  };
+
+  const handlePrevious = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + movies.length) % movies.length);
+    setShowMore(false);
+  };
+
+  if (movies.length === 0) {
+    return <div>Loading...</div>;
+  }
+
+  const { title, description, movie_banner, image, ctaLink, ctaText } = movies[currentIndex];
+  const truncatedDescription = description.split(' ').slice(0, 20).join(' ') + '...';
+
   return (
-    <div className="relative md:w-[84%] h-[82vh] bg-black/40 border border-white md:ml-56 mt-28 md:mt-16 flex items-center justify-center mx-2">
+    <div className="relative md:w-[84%] h-[82vh] bg-whites/40 border border-black md:ml-56 mt-28 md:mt-16 flex items-center justify-center mx-2">
       <Image
-        src={backgroundImage}
+        src={movie_banner}
         alt={title}
         layout="fill"
-        objectFit="cover"
-        className="opacity-60"
+        quality={100}
+        className="opacity-100 object-cover hidden md:block"
       />
-      <div className="absolute inset-0 bg-white bg-opacity-30 blur"></div>
+      <Image
+        src={image}
+        alt={title}
+        layout="fill"
+        quality={100}
+        className="opacity-100 object-cover md:hidden"
+      />
+      <div className="absolute inset-0 bg-white bg-opacity-50"></div>
       <motion.div
         className="absolute inset-0 flex flex-col items-center justify-center text-center p-8"
         initial={{ opacity: 0, y: 50 }}
@@ -37,23 +73,44 @@ const HeroMovie: React.FC<HeroMovieProps> = ({ title, description, backgroundIma
           {title}
         </motion.h1>
         <motion.p
-          className="text-lg md:text-xl text-gray-900 mb-8 max-w-2xl"
+          className="text-lg md:text-xl text-gray-800 mb-4 max-w-2xl"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.7 }}
         >
-          {description}
+          {showMore ? description : truncatedDescription}
         </motion.p>
+        <motion.button
+          onClick={() => setShowMore((prev) => !prev)}
+          className="text-lg text-blue-800 underline mb-8"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.9 }}
+        >
+          {showMore ? 'Show Less' : 'Show More'}
+        </motion.button>
         <motion.a
           href={ctaLink}
           className="px-6 py-3 bg-red-600 text-white text-lg font-bold rounded-lg shadow-lg"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.9 }}
+          transition={{ duration: 1, delay: 1.1 }}
         >
           {ctaText}
         </motion.a>
       </motion.div>
+      <button
+        onClick={handlePrevious}
+        className="absolute left-4 md:left-8 md:bottom-1/2 bottom-4 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full"
+      >
+        <FaArrowLeft size={24} />
+      </button>
+      <button
+        onClick={handleNext}
+        className="absolute right-4 md:right-8 md:bottom-1/2 bottom-4 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full"
+      >
+        <FaArrowRight size={24} />
+      </button>
     </div>
   );
 };
