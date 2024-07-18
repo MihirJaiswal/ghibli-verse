@@ -8,7 +8,7 @@ import { getMovies } from '../../services/ghibli'; // Adjust the import path as 
 
 const HeroMovie: React.FC = () => {
   const [movies, setMovies] = useState<any[]>([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(10);
   const [showMore, setShowMore] = useState(false);
 
   useEffect(() => {
@@ -64,7 +64,7 @@ const HeroMovie: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
-        <div className="relative flex flex-col justify-center items-center bg-white bg-clip-padding backdrop-filter z-30 backdrop-blur-sm bg-opacity-50 border border-2 p-4">
+        <div className="relative flex flex-col justify-center items-center bg-white bg-clip-padding backdrop-filter z-30 b bg-opacity-70 border border-black p-4">
           <motion.h1
             className="text-4xl md:text-6xl font-bold text-black mb-4"
             initial={{ opacity: 0, y: -50 }}
