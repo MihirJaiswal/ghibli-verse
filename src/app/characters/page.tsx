@@ -1,9 +1,12 @@
+import AllCharacters from '@/components/characters/AllCharacters'
 import CharacterGrid from '@/components/characters/CharacterGrid'
 import Footer from '@/components/Footer'
 import Sidebar from '@/components/Sidebar'
 import React from 'react'
+import { characterMovies } from '../../../constant/index';
 
 const page = () => {
+  const characterNames = Object.keys(characterMovies);
   return (
     <div>
       <div className="fixed bottom-0 h-10 z-40 w-full bg-yellow-300 bg-clip-padding backdrop-filter bg-opacity-5 text-white shadow-md hidden md:block border-t border-gray-600"></div>
@@ -14,6 +17,7 @@ const page = () => {
     <Sidebar />
     <main className="flex-1 overflow-y-auto">
       <CharacterGrid/>
+      <AllCharacters names={characterNames} />
       <Footer/>
     </main>
   </div>
