@@ -62,7 +62,6 @@ const AllCharacters: React.FC<AllCharactersProps> = ({ names }) => {
         <SearchBar
           searchTerm={searchTerm}
           movieFilter={movieFilter}
-          otherFilter={otherFilter}
           onSearchChange={handleSearchChange}
           onMovieFilterChange={handleMovieFilterChange}
           onOtherFilterChange={handleOtherFilterChange}

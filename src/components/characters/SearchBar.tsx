@@ -4,10 +4,10 @@ import React from 'react';
 interface SearchBarProps {
   searchTerm: string;
   movieFilter: string;
-  otherFilter: string;
+  otherFilter?: string;
   onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onMovieFilterChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-  onOtherFilterChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  onOtherFilterChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
@@ -63,17 +63,17 @@ const SearchBar: React.FC<SearchBarProps> = ({
           <option value="When Marnie Was There">When Marnie Was There</option>
           <option value="The Red Turtle">The Red Turtle</option>
         </select>
-        <select
-          value={otherFilter}
-          onChange={onOtherFilterChange}
-          className="px-4 py-2 border border-gray-600 rounded-lg"
-        >
-          <option value="All">All</option>
-          <option value="Human">Human</option>
-          <option value="Cat">Cat</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-        </select>
+        {otherFilter !== undefined && onOtherFilterChange !== undefined && (
+          <select
+            value={otherFilter}
+            onChange={onOtherFilterChange}
+            className="px-4 py-2 border border-gray-600 rounded-lg"
+          >
+            <option value="All">All</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        )}
       </div>
     </div>
   );
