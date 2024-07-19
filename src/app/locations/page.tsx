@@ -2,6 +2,7 @@ import LocationsList from '@/components/locations/LocationsList'
 import HomeHeader from '@/components/HomeHeader'
 import Sidebar from '@/components/Sidebar'
 import React from 'react'
+import Footer from '@/components/Footer'
 
 const page = () => {
   return (
@@ -15,6 +16,7 @@ const page = () => {
         <main className="flex-1 overflow-y-auto">
           <HomeHeader />
           <LocationsList/>
+          <Footer/>
         </main>
       </div>
     </div>
