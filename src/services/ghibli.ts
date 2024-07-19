@@ -101,3 +101,18 @@ export const getFilmByUrl = async (url: string): Promise<any> => {
     throw error;
   }
 };
+
+const BASE_URL = "https://ghibliapi.vercel.app";
+
+export const fetchLocations = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/locations`);
+    if (!response.ok) {
+      throw new Error("Failed to fetch locations");
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
