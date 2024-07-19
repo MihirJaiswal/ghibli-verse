@@ -78,13 +78,13 @@ const Movie = () => {
               placeholder="Search by title..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="p-2 pl-10 border border-gray-400 rounded-md w-full"
+              className="p-2 pl-10 border border-gray-800 rounded-md w-full"
             />
           </div>
           <select
             value={sortCriteria}
             onChange={(e) => setSortCriteria(e.target.value)}
-            className="p-2 border border-gray-400 rounded-md"
+            className="p-2 border border-gray-800 rounded-md"
           >
             <option value="title">Sort by Title</option>
             <option value="rt_score">Sort by RT Score</option>

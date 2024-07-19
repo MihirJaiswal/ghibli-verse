@@ -19,7 +19,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   onOtherFilterChange,
 }) => {
   return (
-    <div className="flex justify-between items-center mb-4">
+    <div className="flex flex-col md:flex-row justify-between items-center mb-4 space-y-4 md:space-y-0 md:space-x-4">
       <div className="relative w-full md:w-1/3">
         <input
           type="text"
@@ -34,11 +34,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
           </svg>
         </span>
       </div>
-      <div className="flex space-x-4">
+      <div className="flex flex-col md:flex-row w-full md:w-auto space-y-4 md:space-y-0 md:space-x-4">
         <select
           value={movieFilter}
           onChange={onMovieFilterChange}
-          className="px-4 py-2 border border-gray-600 rounded-lg"
+          className="px-4 py-2 border border-gray-600 rounded-lg w-full md:w-auto"
         >
           <option value="All">All Movies</option>
           <option value="Castle in the Sky">Castle in the Sky</option>
@@ -67,7 +67,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
           <select
             value={otherFilter}
             onChange={onOtherFilterChange}
-            className="px-4 py-2 border border-gray-600 rounded-lg"
+            className="px-4 py-2 border border-gray-600 rounded-lg w-full md:w-auto"
           >
             <option value="All">All</option>
             <option value="Male">Male</option>

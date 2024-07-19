@@ -84,9 +84,9 @@ const CharacterGrid: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 p-10 mx-2 md:mx-6 mt-16 border border-black relative">
-      <h1 className="text-4xl md:text-5xl font-bold text-center mb-10 text-gray-800">Some Characters</h1>
-      <div className="container mx-auto px-4">
+    <div className="min-h-screen bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 md:p-10 mx-2 md:mx-6 mt-28 md:mt-16 border border-black relative">
+      <h1 className="text-4xl md:text-5xl font-bold text-center mb-10 text-gray-800 mt-6 md:mt-2">Some Characters</h1>
+      <div className="container mx-auto md:px-4">
         <SearchBar
           searchTerm={searchTerm}
           movieFilter={movieFilter}
@@ -95,7 +95,7 @@ const CharacterGrid: React.FC = () => {
           onMovieFilterChange={handleMovieFilterChange}
           onOtherFilterChange={handleOtherFilterChange}
         />
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-8 my-8">
           {filteredCharacters.map((character) => (
             <CharacterCard
               key={character.id}
