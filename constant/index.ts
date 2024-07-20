@@ -424,3 +424,47 @@ export const featuredImages: { [key: string]: string } = {
     "pic4": "/places/featured/pic4.jpeg",
     "pic5": "/places/featured/pic5.jpg",
 }
+
+export type CharacterData = {
+    [key: string]: {
+      image: string;
+      description: string;
+      movie: string; // Add this line
+      gender: string; // Add this line
+    };
+  };
+  
+
+  export const characterData: CharacterData = {
+    'Kiki': {
+      image: '/characters/featured/kiki.png',
+      description: 'Kiki (キキ , Kiki) is the main protagonist of Kikis Delivery Service. She is a 13-year-old witch-in-training who sets up her own witch delivery service. She has a cat named Jiji.',
+      movie: 'Kiki\'s Delivery Service', // Add this line
+      gender: 'Female', // Add this line
+    },
+    'Chichiro': {
+      image: '/characters/featured/chichiro.png',
+      description: 'Chihiro (荻野 千尋 , Ogino Chihiro), referred throughout most of the film by Sen (千 lit. "one-thousand"), is the ten-year-old core protagonist of the Japanese animated film Spirited Away.',
+      movie: 'Spirited Away', // Add this line
+      gender: 'Female', // Add this line
+    },
+    'Totoro': {
+      image: '/characters/featured/totoro.png',
+      description: 'Totoro (トトロ) or Big Totoro (大トトロ, Ō Totoro), also known as Miminzuku (ミミンズク), is the title tetartagonist in Studio Ghiblis film My Neighbor Totoro, as well as its sequel, Mei and the Kittenbus. He is the mascot of Studio Ghibli.',
+      movie: 'My Neighbor Totoro', // Add this line
+      gender: 'Male', // Add this line
+    },
+    'San': {
+      image: '/characters/featured/hime.png',
+      description: 'San (サン), otherwise known as Princess Mononoke (もののけ姫, "Mononoke hime") or the "Wolf Girl / Princess", is the main character, along with Ashitaka, in Princess Mononoke. San is the Princess of the Wolf Gods.',
+      movie: 'Princess Mononoke', // Add this line
+      gender: 'Female', // Add this line
+    },
+    'Nausicaä': {
+      image: '/characters/featured/nausica.png',
+      description: 'Nausicaä (ナウシカ Naushika, pronounced [na.uɕika]) [1] is the princess of the Valley of the Wind. She is the eleventh child of King Jhil, and the only one to live to maturity. She is rarely seen without her Mehve or her companion, Teto the fox-squirrel.',
+      movie: 'Nausicaä of the Valley of the Wind', // Add this line
+      gender: 'Female', // Add this line
+    },
+  };
+  
