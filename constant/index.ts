@@ -715,3 +715,28 @@ export type CharacterData = {
     },
   };
   
+
+  export const youtubeLinks = [
+    "https://www.youtube.com/watch?v=iwROgK94zcM",  
+    "https://www.youtube.com/watch?v=4vPeTSRd580",  
+    "https://www.youtube.com/watch?v=92a7Hj0ijLs",
+    "https://www.youtube.com/watch?v=4bG17OYs-GA", 
+    "https://www.youtube.com/watch?v=OfkQlZArxw0", 
+    "https://www.youtube.com/watch?v=3LRyNwYg1f8",  
+    "https://www.youtube.com/watch?v=_7cowIHjCD4", 
+    "https://www.youtube.com/watch?v=0pVkiod6V0U",   
+    "https://www.youtube.com/watch?v=4OiMOHRDs14",  
+    "https://www.youtube.com/watch?v=1C9ujuCPlnY",  
+    "https://www.youtube.com/watch?v=ByXuk9QqQkk",  
+    "https://www.youtube.com/watch?v=Gp-H_YOcYTM",  
+    "https://www.youtube.com/watch?v=iwROgK94zcM&t=1s",  
+    "https://www.youtube.com/watch?v=8hxYx3Jq3kI",  
+    "https://www.youtube.com/watch?v=CsR3KVgBzSM",  
+    "https://www.youtube.com/watch?v=9CtIXPhPo0g",  
+    "https://www.youtube.com/watch?v=9nzpk_Br6yo",  
+    "https://www.youtube.com/watch?v=PhHoCnRg1Yw",  
+    "https://www.youtube.com/watch?v=W71mtorCZDw",  
+    "https://www.youtube.com/watch?v=jjmrxqcQdYg", 
+    "https://www.youtube.com/watch?v=Sw7BggqBpTk", 
+    "https://www.youtube.com/watch?v=_PfhotgXEeQ"
+  ];

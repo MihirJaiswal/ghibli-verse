@@ -2,39 +2,15 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { FaArrowLeft, FaArrowRight, FaPlay } from 'react-icons/fa'; // Import FaPlay icon
 import { getMovies } from '../../services/ghibli'; // Adjust the import path as needed
+import { youtubeLinks } from '../../../constant/index'; // Import the YouTube links
 
 const HeroMovie: React.FC = () => {
   const [movies, setMovies] = useState<any[]>([]);
   const [currentIndex, setCurrentIndex] = useState(10);
   const [showMore, setShowMore] = useState(false);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
-
-  const youtubeLinks = [
-    "https://www.youtube.com/watch?v=iwROgK94zcM",  
-    "https://www.youtube.com/watch?v=4vPeTSRd580",  
-    "https://www.youtube.com/watch?v=92a7Hj0ijLs",
-    "https://www.youtube.com/watch?v=4bG17OYs-GA", 
-    "https://www.youtube.com/watch?v=OfkQlZArxw0", 
-    "https://www.youtube.com/watch?v=3LRyNwYg1f8",  
-    "https://www.youtube.com/watch?v=_7cowIHjCD4", 
-    "https://www.youtube.com/watch?v=0pVkiod6V0U",   
-    "https://www.youtube.com/watch?v=4OiMOHRDs14",  
-    "https://www.youtube.com/watch?v=1C9ujuCPlnY",  
-    "https://www.youtube.com/watch?v=ByXuk9QqQkk",  
-    "https://www.youtube.com/watch?v=Gp-H_YOcYTM",  
-    "https://www.youtube.com/watch?v=iwROgK94zcM&t=1s",  
-    "https://www.youtube.com/watch?v=8hxYx3Jq3kI",  
-    "https://www.youtube.com/watch?v=CsR3KVgBzSM",  
-    "https://www.youtube.com/watch?v=9CtIXPhPo0g",  
-    "https://www.youtube.com/watch?v=9nzpk_Br6yo",  
-    "https://www.youtube.com/watch?v=PhHoCnRg1Yw",  
-    "https://www.youtube.com/watch?v=W71mtorCZDw",  
-    "https://www.youtube.com/watch?v=jjmrxqcQdYg", 
-    "https://www.youtube.com/watch?v=Sw7BggqBpTk", 
-    "https://www.youtube.com/watch?v=_PfhotgXEeQ"
-  ];
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -99,7 +75,7 @@ const HeroMovie: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <div className="relative flex flex-col justify-center items-center bg-white bg-opacity-70 border-2 p-6">
+          <div className="relative flex flex-col justify-center items-center bg-white bg-opacity-80 border-2 p-6">
             <motion.h1
               className="text-3xl md:text-6xl font-bold text-black mb-4"
               initial={{ opacity: 0, y: -50 }}
@@ -135,13 +111,14 @@ const HeroMovie: React.FC = () => {
             </motion.button>
             <motion.a
               href={youtubeLink}
-              className="px-6 py-3 bg-red-600 text-white text-lg font-bold rounded-lg shadow-lg"
+              className="px-6 py-3 bg-red-600 text-white text-lg font-bold rounded-lg shadow-lg flex items-center justify-center gap-2"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 1.1 }}
               target="_blank" // Open link in new tab
               rel="noopener noreferrer" // Ensure security
             >
+              <FaPlay size={20} /> {/* Add play icon */}
               Watch Trailer
             </motion.a>
           </div>
