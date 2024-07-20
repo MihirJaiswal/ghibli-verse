@@ -10,8 +10,9 @@ const LandingPage = () => {
   return (
     <div className="relative flex min-h-screen w-full">
       {/* Background Overlays */}
-      <HeroSection/>
       <OverlayEffects/>
+      <HeroSection/>
+   
     </div>
   );
 };

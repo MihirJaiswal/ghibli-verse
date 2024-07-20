@@ -1,10 +1,14 @@
 import Image from 'next/image';
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 const Footer = () => {
   return (
     <footer className="bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 text-gray-800 py-8 px-4 relative mt-16 z-50 border-t border-black">
-      <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
+      <div 
+        className='absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-50 z-0'
+      ></div>
+      <div className="container mx-auto flex flex-col md:flex-row items-center justify-between relative">
         <div className="mb-4 md:mb-0 text-center md:text-left">
           <div className='flex flex-col items-center gap-2'>
           <Image
@@ -35,7 +39,7 @@ const Footer = () => {
           <p className="text-sm font-semibold">info@ghibliverse.com</p>
         </div>
       </div>
-      <div className="mt-8 border-t border-gray-300 pt-4 text-center text-sm text-gray-600">
+      <div className="mt-8 border-t border-gray-300 pt-4 text-center text-sm text-gray-600 relative">
         &copy; 2024 Ghibli Verse. All rights reserved.
       </div>
     </footer>

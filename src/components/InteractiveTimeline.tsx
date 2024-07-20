@@ -64,21 +64,27 @@ const InteractiveTimeline = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border border-black px-4 py-12 md:px-8 md:ml-8 md:mr-6 relative mx-2">
+      <motion.div 
+        className='absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-50 z-0' 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.5 }}
+        transition={{ duration: 1, ease: "easeInOut" }}
+      ></motion.div>
       <motion.div
         className="text-center mb-12"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
+        <h1 className="text-4xl font-bold text-gray-900 mb-4 relative">
           Timeline of Movies
         </h1>
-        <p className="text-md text-gray-700 max-w-2xl mx-auto">
+        <p className="text-md text-gray-700 max-w-2xl mx-auto relative">
           Discover the magic of Studio Ghibli with our interactive timeline. 
         </p>
       </motion.div>
 
-      <Slider {...settings} className="w-full">
+      <Slider {...settings} className="w-full relative">
         {movies.map((movie, index) => (
           <div
             key={movie.id}
@@ -100,18 +106,24 @@ const InteractiveTimeline = () => {
       </Slider>
 
       {movies.length > 0 && (
-        <div className="mt-16 flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-8 bg-white bg-opacity-40 backdrop-filter backdrop-blur-sm border border-gray-200  p-8 shadow-lg">
+        <div className="mt-16 flex flex-col md:flex-row items-center relative justify-center space-y-8 md:space-y-0 md:space-x-8 bg-white bg-opacity-40 backdrop-filter backdrop-blur-sm border border-gray-200  p-8 shadow-lg">
+          <motion.div 
+        className='absolute inset-0 bg-gradient-to-r from-red-500 to-red-700 opacity-50 z-0 pointer-events-none' 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.5 }}
+        transition={{ duration: 1, ease: "easeInOut" }}
+      ></motion.div>
         <Image
           src={movies[selectedIndex].image}
           alt={movies[selectedIndex].title}
           width={300}
           height={450}
-          className="object-cover shadow-lg"
+          className="object-cover shadow-lg relative"
         />
-        <div className="flex flex-col items-center md:items-start">
-          <h2 className="text-3xl font-semibold text-gray-900 mt-4 md:mt-0 text-center md:text-left">{movies[selectedIndex].title}</h2>
-          <p className="text-sm text-gray-600 mb-2 py-2">{movies[selectedIndex].release_date}</p>
-          <p className="text-md text-gray-700 max-w-2xl text-justify md:text-left">{movies[selectedIndex].description}</p>
+        <div className="flex flex-col items-center md:items-start relative">
+          <h2 className="text-3xl font-semibold text-gray-900 mt-4 md:mt-0 text-center md:text-left relative">{movies[selectedIndex].title}</h2>
+          <p className="text-sm text-gray-800 mb-2 py-2">{movies[selectedIndex].release_date}</p>
+          <p className="text-md text-gray-900 max-w-2xl text-justify md:text-left">{movies[selectedIndex].description}</p>
         </div>
       </div>
       

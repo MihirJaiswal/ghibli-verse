@@ -2,10 +2,12 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import SparklesText from './ui/sparkles-text';
+import TextShimmer from './ui/text-shimmer';
+import { FaArrowRight } from 'react-icons/fa';
 
 const HeroSection = () => {
   return (
-    <div className="md:flex-1 bg-white bg-clip-padding backdrop-filter z-30 backdrop-blur-sm bg-opacity-30 flex flex-col items-center justify-center text-center relative mx-2 p-4 md:mx-6 md:my-16 border border-black shadow-lg">
+    <div className="md:flex-1 bg-white bg-clip-padding backdrop-filter bg-opacity-40 flex flex-col items-center justify-center text-center relative mx-2 p-4 md:mx-6 md:my-16 border border-black shadow-lg">
       {/* Top Right Corner Decoration */}
       <div className='absolute top-4 right-4 z-10'>
         <Image src='/badge.svg' alt='badge' width={500} height={500} className='w-32 h-auto absolute md:top-4 top-3' />
@@ -56,7 +58,7 @@ const HeroSection = () => {
 
       {/* Heading */}
       <motion.h1 
-        className="text-4xl font-bold text-gray-900 mb-3 text-left relative z-20"
+        className="text-4xl font-bold text-gray-900 mb-3 text-left relative z-50"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
@@ -66,7 +68,7 @@ const HeroSection = () => {
 
       {/* Description */}
       <motion.p 
-        className="text-md text-gray-900 mb-6 text-left relative z-20"
+        className="text-md text-gray-900 mb-6 text-left relative z-50"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.5 }}
@@ -76,7 +78,7 @@ const HeroSection = () => {
 
       {/* Buttons */}
       <motion.div 
-        className="flex space-x-3 md:justify-center justify-start mr-14 md:mr-0 relative z-20"
+        className="flex space-x-3 md:justify-center justify-start mr-14 md:mr-0 relative z-50"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1 }}
@@ -99,12 +101,25 @@ const HeroSection = () => {
 
       {/* Inspirational Quote */}
       <motion.div 
-        className="mt-8 text-gray-800 italic relative z-20"
+        className="mt-8 text-gray-800 italic relative z-50 hidden md:block"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 2 }}
       >
-        <p>"Experience the magic of storytelling and imagination with us."</p>
+         <div className='backdrop-filter-[12px] relative inline-flex h-full md:h-7 items-center justify-between rounded-full border border-white/5 bg-white/20 px-3 text-xs text-white transition-all ease-in hover:cursor-pointer hover:bg-white/20 group gap-1 translate-y-[-1rem] animate-fade-in'>
+          <TextShimmer className="inline-flex items-center justify-center relative">
+            <span className='text-gray-800'>"✨ Experience the magic of storytelling and imagination with us."</span>{" "}
+          <FaArrowRight className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5 text-gray-700" />
+        </TextShimmer>
+         </div>
+      </motion.div>
+      <motion.div 
+        className="mt-8 text-gray-900 italic relative z-50 md:hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 2 }}
+      >
+        <p>"✨  Experience the magic of storytelling and imagination with us."</p>
       </motion.div>
     </div>
   );
