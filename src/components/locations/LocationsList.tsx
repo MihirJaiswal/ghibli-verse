@@ -1,9 +1,9 @@
-// components/LocationsList.tsx
 'use client';
 
 import React, { useEffect, useState } from 'react';
 import { fetchLocations } from '../../services/ghibli';
 import LocationCard from './LocationCard';
+import { locationImages } from '../../../constant/index';
 
 interface Location {
   id: string;
@@ -55,6 +55,7 @@ const LocationsList: React.FC = () => {
             climate={location.climate}
             terrain={location.terrain}
             surface_water={location.surface_water}
+            image={locationImages[location.name] || '/path/to/default.jpg'} // Ensure locationImages is used properly
           />
         ))}
       </div>

@@ -387,3 +387,31 @@ export const characterMovies: Record<string, string> = {
     "Custard": "Earwig and the Witch",
   };
   
+
+  export const locationImages: { [key: string]: string } = {
+    "Irontown": "/places/Irontown.webp",
+    "Gutiokipanja": "/places/gutiokipanja.webp",
+    "The Cat Kingdom": "/places/the_cat_kingdom.webp",
+    "The Marsh House": "/places/the_marsh_house.webp",
+    "Hospital": "/places/hospital.webp",
+    "Gondoa": "/places/gondoa.webp",
+    "Ursula's Log Cabin": "/places/ursulas_log_cabin.webp",
+    "Zeniba's Cottage": "/places/zenibas_cottage.webp",
+    "Bamboo Forest": "/places/bamboo_forest.webp",
+    "Pazu's Mines": "/places/pazus_mines.webp",
+    "Shizuku's Apartment": "/places/shizukus_apartment.webp",
+    "Laputa": "/places/laputa.webp",
+    "Tedis": "/places/Tedis.webp",
+    "Koriko": "/places/koriko.webp",
+    "Forest": "/places/forest.webp",
+    "Bathhouse": "/places/bathhouse.webp",
+    "Matsugo": "/places/matsugo.webp",
+    "Taeko's House": "/places/taekos_house.webp",
+    "Piccolo S.P.A.": "/places/piccolo_spa.webp",
+    "Karikiya": "/places/karikiya.webp",
+    "Satsuki's School House": "/places/satsukis_school_house.webp",
+    "Fujimoto's Underwater Harbor": "/places/fujimotos_underwater_harbor.webp",
+    "Himawari Nursery School": "/places/himawari_nursery_school.webp",
+    "Ingary": "/places/ingary.webp",
+    "St. Morwald's Home for Children": "/places/st_morwalds_home_for_children.webp",
+};
