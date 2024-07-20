@@ -3,6 +3,7 @@ import HomeHeader from '@/components/HomeHeader'
 import Sidebar from '@/components/Sidebar'
 import React from 'react'
 import Footer from '@/components/Footer'
+import LocationCarousel from '@/components/locations/LocationCarousel'
 
 const page = () => {
   return (
@@ -15,6 +16,7 @@ const page = () => {
         <Sidebar />
         <main className="flex-1 overflow-y-auto">
           <HomeHeader />
+          <LocationCarousel/>
           <LocationsList/>
           <Footer/>
         </main>

@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { fetchLocations } from '../../services/ghibli';
 import LocationCard from './LocationCard';
 import { locationImages } from '../../../constant/index';
+import Link from 'next/link';
+import { FaSearch } from 'react-icons/fa';
 
 interface Location {
   id: string;
@@ -15,8 +17,10 @@ interface Location {
 
 const LocationsList: React.FC = () => {
   const [locations, setLocations] = useState<Location[]>([]);
+  const [filteredLocations, setFilteredLocations] = useState<Location[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   useEffect(() => {
     const getLocations = async () => {
@@ -24,6 +28,7 @@ const LocationsList: React.FC = () => {
       try {
         const data = await fetchLocations();
         setLocations(data);
+        setFilteredLocations(data);
       } catch (error) {
         setError('Failed to fetch locations');
       } finally {
@@ -34,6 +39,14 @@ const LocationsList: React.FC = () => {
     getLocations();
   }, []);
 
+  useEffect(() => {
+    setFilteredLocations(
+      locations.filter(location =>
+        location.name.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    );
+  }, [searchQuery, locations]);
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -43,24 +56,37 @@ const LocationsList: React.FC = () => {
   }
 
   return (
-   <div className='mx-2 md:mx-6 relative bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 border border-black md:mt-16 mt-28 p-2'>
-     <div className="container mx-auto p-4 ">
-      <h1 className="text-3xl font-bold mb-4 mt-12">Studio Ghibli Locations</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {locations.map((location) => (
-          <LocationCard
-            key={location.id}
-            id={location.id}
-            name={location.name}
-            climate={location.climate}
-            terrain={location.terrain}
-            surface_water={location.surface_water}
-            image={locationImages[location.name] || '/path/to/default.jpg'} // Ensure locationImages is used properly
+    <div className='mx-2 md:mx-6 relative bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 border border-black p-2'>
+      <div className="container mx-auto p-4">
+        <h1 className="text-2xl text-center md:text-left md:text-3xl font-bold md:mt-12 mb-12">Studio Ghibli Locations</h1>
+        <div className="relative  mt-6">
+          <input
+            type="text"
+            placeholder="Search Locations"
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            className="w-full p-2 border border-gray-800 rounded pl-10"
           />
-        ))}
+          <FaSearch className="absolute left-2 top-2 h-6 text-gray-400" />
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {filteredLocations.map((location) => (
+            <Link key={location.id} href={`/locations/${location.id}`}>
+              <div>
+                <LocationCard
+                  id={location.id}
+                  name={location.name}
+                  climate={location.climate}
+                  terrain={location.terrain}
+                  surface_water={location.surface_water}
+                  image={locationImages[location.name] || '/path/to/default.jpg'} // Ensure locationImages is used properly
+                />
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
-   </div>
   );
 };
 

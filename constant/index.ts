@@ -415,3 +415,12 @@ export const characterMovies: Record<string, string> = {
     "Ingary": "/places/ingary.webp",
     "St. Morwald's Home for Children": "/places/st_morwalds_home_for_children.webp",
 };
+
+
+export const featuredImages: { [key: string]: string } = {
+    "pic1": "/places/featured/pic2.jpeg",
+    "pic2": "/places/featured/pic1.jpeg",
+    "pic3": "/places/featured/pic3.jpeg",
+    "pic4": "/places/featured/pic4.jpeg",
+    "pic5": "/places/featured/pic5.jpg",
+}
