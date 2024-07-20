@@ -24,8 +24,8 @@ const CharacterCarousel: React.FC = () => {
   const currentCharacter = characterData[characterNames[currentIndex]];
 
   return (
-    <div className='flex flex-col items-center justify-center h-screen mx-2 mt-16 md:mt-0'>
-      <div className='relative border border-black p-4 shadow-md md:w-[1140px] h-[550px]'>
+    <div className='flex flex-col items-center justify-center h-[80vh] mx-2 md:mx-6 mt-28 mb-6 md:mt-16 md:mb-16'>
+      <div className='relative border border-black p-4 shadow-md md:w-full h-full'>
         <div className='absolute inset-0 bg-blue-500 opacity-50 z-0'></div>
         <div className='absolute inset-0 bg-red-500 opacity-50 z-0' style={{ clipPath: 'polygon(75% 0, 100% 0, 100% 100%, 31% 100%)' }}></div>
        <div className='hidden md:flex items-center justify-center'>
