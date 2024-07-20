@@ -4,19 +4,25 @@ import React from 'react';
 interface SearchBarProps {
   searchTerm: string;
   movieFilter: string;
+  genderFilter?: string;
+  speciesFilter?: string;
   otherFilter?: string;
   onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onMovieFilterChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  onGenderFilterChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  onSpeciesFilterChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   onOtherFilterChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
   searchTerm,
   movieFilter,
-  otherFilter,
+  genderFilter,
+  speciesFilter,
   onSearchChange,
   onMovieFilterChange,
-  onOtherFilterChange,
+  onGenderFilterChange,
+  onSpeciesFilterChange,
 }) => {
   return (
     <div className="flex flex-col md:flex-row justify-between items-center mb-4 space-y-4 md:space-y-0 md:space-x-4">
@@ -63,15 +69,28 @@ const SearchBar: React.FC<SearchBarProps> = ({
           <option value="When Marnie Was There">When Marnie Was There</option>
           <option value="The Red Turtle">The Red Turtle</option>
         </select>
-        {otherFilter !== undefined && onOtherFilterChange !== undefined && (
+        {genderFilter !== undefined && onGenderFilterChange !== undefined && (
           <select
-            value={otherFilter}
-            onChange={onOtherFilterChange}
+            value={genderFilter}
+            onChange={onGenderFilterChange}
             className="px-4 py-2 border border-gray-600 rounded-lg w-full md:w-auto"
           >
-            <option value="All">All</option>
+            <option value="All">All Genders</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
+          </select>
+        )}
+        {speciesFilter !== undefined && onSpeciesFilterChange !== undefined && (
+          <select
+            value={speciesFilter}
+            onChange={onSpeciesFilterChange}
+            className="px-4 py-2 border border-gray-600 rounded-lg w-full md:w-auto"
+          >
+            <option value="All">All Species</option>
+            <option value="Human">Human</option>
+            <option value="Cat">Cat</option>
+            <option value="Animal">Animal</option>
+            <option value="Other">Other</option>
           </select>
         )}
       </div>

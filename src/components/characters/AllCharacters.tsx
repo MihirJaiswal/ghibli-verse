@@ -1,7 +1,6 @@
 'use client'
-// components/AllCharacters.tsx
 import React, { useState } from 'react';
-import { characterMovies, characterImages } from '../../../constant/index'; // Adjust the import path accordingly
+import { characterMovies, characterImages, characterDetails } from '../../../constant/index'; // Adjust the import path accordingly
 import SearchBar from './SearchBar'; // Adjust the import path accordingly
 
 interface AllCharactersProps {
@@ -12,27 +11,34 @@ const AllCharacters: React.FC<AllCharactersProps> = ({ names }) => {
   const [filteredNames, setFilteredNames] = useState(names);
   const [searchTerm, setSearchTerm] = useState('');
   const [movieFilter, setMovieFilter] = useState('All');
-  const [otherFilter, setOtherFilter] = useState('All');
+  const [genderFilter, setGenderFilter] = useState('All');
+  const [speciesFilter, setSpeciesFilter] = useState('All');
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value;
     setSearchTerm(query);
-    filterCharacters(query, movieFilter, otherFilter);
+    filterCharacters(query, movieFilter, genderFilter, speciesFilter);
   };
 
   const handleMovieFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedMovie = event.target.value;
     setMovieFilter(selectedMovie);
-    filterCharacters(searchTerm, selectedMovie, otherFilter);
+    filterCharacters(searchTerm, selectedMovie, genderFilter, speciesFilter);
   };
 
-  const handleOtherFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedOther = event.target.value;
-    setOtherFilter(selectedOther);
-    filterCharacters(searchTerm, movieFilter, selectedOther);
+  const handleGenderFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedGender = event.target.value;
+    setGenderFilter(selectedGender);
+    filterCharacters(searchTerm, movieFilter, selectedGender, speciesFilter);
   };
 
-  const filterCharacters = (searchTerm: string, movieFilter: string, otherFilter: string) => {
+  const handleSpeciesFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedSpecies = event.target.value;
+    setSpeciesFilter(selectedSpecies);
+    filterCharacters(searchTerm, movieFilter, genderFilter, selectedSpecies);
+  };
+
+  const filterCharacters = (searchTerm: string, movieFilter: string, genderFilter: string, speciesFilter: string) => {
     let filtered = names;
 
     if (searchTerm) {
@@ -46,9 +52,12 @@ const AllCharacters: React.FC<AllCharactersProps> = ({ names }) => {
       filtered = filtered.filter(name => characterMovies[name] === movieFilter);
     }
 
-    if (otherFilter !== 'All') {
-      // Assuming you have gender information in `characterOtherInfo` or similar
-      // filtered = filtered.filter(name => characterOtherInfo[name]?.gender === otherFilter);
+    if (genderFilter !== 'All') {
+      filtered = filtered.filter(name => characterDetails[name]?.gender === genderFilter);
+    }
+
+    if (speciesFilter !== 'All') {
+      filtered = filtered.filter(name => characterDetails[name]?.species === speciesFilter);
     }
 
     setFilteredNames(filtered);
@@ -59,18 +68,23 @@ const AllCharacters: React.FC<AllCharactersProps> = ({ names }) => {
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl font-extrabold text-gray-900 mb-6">All Characters</h1>
         <div className='mt-8 mb-12'>
-        <SearchBar
-          searchTerm={searchTerm}
-          movieFilter={movieFilter}
-          onSearchChange={handleSearchChange}
-          onMovieFilterChange={handleMovieFilterChange}
-          onOtherFilterChange={handleOtherFilterChange}
-        />
+          <SearchBar
+            searchTerm={searchTerm}
+            movieFilter={movieFilter}
+            onSearchChange={handleSearchChange}
+            onMovieFilterChange={handleMovieFilterChange}
+            onOtherFilterChange={handleGenderFilterChange} 
+            onSpeciesFilterChange={handleSpeciesFilterChange}
+            genderFilter={genderFilter}
+            speciesFilter={speciesFilter}
+          />
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
           {filteredNames.map((name) => {
             const movie = characterMovies[name] || 'Unknown Movie';
             const imageUrl = characterImages[name] || '/default-character.webp'; // Fallback image URL
+            const gender = characterDetails[name]?.gender || 'Unknown';
+            const species = characterDetails[name]?.species || 'Unknown';
 
             return (
               <div key={name} className="bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 p-4 border border-black shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl">
@@ -81,6 +95,8 @@ const AllCharacters: React.FC<AllCharactersProps> = ({ names }) => {
                 />
                 <h2 className="text-xl font-bold mb-2">{name}</h2>
                 <p className="text-sm text-gray-700">{movie}</p>
+                <p className="text-sm text-gray-500">Gender: {gender}</p>
+                <p className="text-sm text-gray-500">Species: {species}</p>
               </div>
             );
           })}

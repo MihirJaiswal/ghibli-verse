@@ -90,10 +90,10 @@ const CharacterGrid: React.FC = () => {
         <SearchBar
           searchTerm={searchTerm}
           movieFilter={movieFilter}
-          otherFilter={otherFilter}
+          genderFilter={otherFilter}
           onSearchChange={handleSearchChange}
           onMovieFilterChange={handleMovieFilterChange}
-          onOtherFilterChange={handleOtherFilterChange}
+          onGenderFilterChange={handleOtherFilterChange}
         />
         <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-8 my-8">
           {filteredCharacters.map((character) => (
