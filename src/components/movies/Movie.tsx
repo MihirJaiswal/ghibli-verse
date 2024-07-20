@@ -61,16 +61,22 @@ const Movie = () => {
       </nav>
 
       <main className="relative p-6 bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border border-black my-16">
+      <motion.div 
+        className='absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-50 z-0' 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.5 }}
+        transition={{ duration: 1, ease: "easeInOut" }}
+      ></motion.div>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75 }}
           className="text-center mb-12"
         >
-          <h1 className="text-2xl md:text-4xl font-bold mb-8 mt-2">All Studio Ghibli Movies</h1>
+          <h1 className="text-2xl md:text-4xl font-bold mb-8 mt-2 relative">All Studio Ghibli Movies</h1>
         </motion.div>
 
-        <div className="flex flex-col md:flex-row justify-between mb-8">
+        <div className="flex flex-col md:flex-row justify-between mb-8 relative">
           <div className="relative flex items-center mb-4 md:mb-0 md:mr-4">
             <FaSearch className="absolute left-3 text-gray-400" />
             <input
@@ -97,6 +103,7 @@ const Movie = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.75 }}
+            className='relative'
           >
             <MovieList movies={filteredMovies} />
           </motion.div>
