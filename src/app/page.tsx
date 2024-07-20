@@ -17,10 +17,11 @@ export default function Home() {
       <div className="fixed inset-0 bg-bg2 bg-cover bg-center opacity-80 blur-sm pointer-events-none"></div>
       <div className="fixed inset-0 bg-blue-500 bg-cover bg-center opacity-30 blur-sm pointer-events-none"></div>
       
-      <div className="flex h-screen">
+      <div className="">
         <Sidebar />
-        <main className="flex-1 overflow-y-auto">
-          <HomeHeader />
+        <HomeHeader />
+        <main className="md:ml-20 md:mt-6 mt-24">
+         
           <LandingPage />
           <AboutUs />
           <VideoGallery />
