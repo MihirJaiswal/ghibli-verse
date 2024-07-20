@@ -28,6 +28,16 @@ const CharacterCarousel: React.FC = () => {
       <div className='relative border border-black p-4 shadow-md md:w-[1140px] h-[550px]'>
         <div className='absolute inset-0 bg-blue-500 opacity-50 z-0'></div>
         <div className='absolute inset-0 bg-red-500 opacity-50 z-0' style={{ clipPath: 'polygon(75% 0, 100% 0, 100% 100%, 31% 100%)' }}></div>
+       <div className='hidden md:flex items-center justify-center'>
+       <Image
+          src="/logo.svg"
+          alt="Ghibli Logo"
+          width={1920}
+          height={1080}
+          quality={100}
+          className="object-cover absolute left-44 top-16 inset-0  opacity-10 md:w-2/3"
+        />
+       </div>
         <div className='relative z-10 flex flex-col items-center h-full'>
           <div className='relative flex flex-col items-start md:items-start w-full h-full'>
             <h1 className="absolute top-2 md:top-4 left-16 md:left-4 text-4xl md:text-5xl font-bold text-black z-20">
