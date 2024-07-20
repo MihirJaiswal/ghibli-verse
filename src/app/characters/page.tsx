@@ -5,6 +5,7 @@ import Sidebar from '@/components/Sidebar'
 import React from 'react'
 import { characterMovies } from '../../../constant/index';
 import HomeHeader from '@/components/HomeHeader'
+import CharacterCarousel from '@/components/characters/CharacterCarousel'
 
 const page = () => {
   const characterNames = Object.keys(characterMovies);
@@ -18,6 +19,7 @@ const page = () => {
     <Sidebar />
     <main className="flex-1 overflow-y-auto">
       <HomeHeader/>
+      <CharacterCarousel/>
       <CharacterGrid/>
       <AllCharacters names={characterNames} />
       <Footer/>
