@@ -21,7 +21,7 @@ const VideoGallery = () => {
   }, [selectedVideo]);
 
   return (
-    <div className="flex relative flex-col md:flex-row min-h-screen w-full p-2 md:p-4 ">
+    <div className="flex relative flex-col md:flex-row md:min-h-screen w-full p-2 md:p-4 ">
       {/* Video Section */}
       <div className="md:flex-1 flex items-center justify-center bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border-r md:border-b border-t border-l border-black p-6  shadow-lg md:max-w-3/4 md:my-16">
       <motion.div 
@@ -43,12 +43,6 @@ const VideoGallery = () => {
 
       {/* Thumbnails Section */}
       <div className="flex md:flex-col items-center justify-center p-4 space-y-4 md:w-1/3 bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border border-b md:border-t border-r border-black shadow-lg md:mr-2 md:my-16">
-      <motion.div 
-        className='absolute inset-0 bg-gradient-to-r from-red-500 to-red-700 opacity-50 z-0 ' 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.5 }}
-        transition={{ duration: 1, ease: "easeInOut" }}
-      ></motion.div>
         {videos.map((video) => (
           <motion.div
             key={video.id}
