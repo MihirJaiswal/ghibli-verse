@@ -53,13 +53,6 @@ const Movie = () => {
 
   return (
     <div className="min-h-screen mx-2 md:mx-6">
-      <nav className="flex items-center justify-between p-4 bg-blue-600 text-white mb-8 h-16 md:h-20">
-        <div className="flex items-center">
-          <Image src="/logo.svg" alt="Logo" width={40} height={40} className="mr-2" />
-          <span className="text-xl md:text-2xl font-bold">Studio Ghibli Movies</span>
-        </div>
-      </nav>
-
       <main className="relative p-6 bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border border-black my-16">
       <motion.div 
         className='absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-50 z-0' 

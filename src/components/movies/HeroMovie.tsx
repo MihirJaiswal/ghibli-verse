@@ -47,7 +47,7 @@ const HeroMovie: React.FC = () => {
   const mobileTruncatedDescription = description.split(' ').slice(0, 60).join(' ') + '...';
 
   return (
-    <div className="relative md:w-[96%] h-[80vh] bg-gray-900 text-white border-2 border-gray-100 mt-28 md:mt-20 flex items-center justify-center mx-2 md:mx-6">
+    <div className="relative md:w-[96%] h-[80vh] bg-black text-white border border-gray-900 mt-28 md:mt-24 flex items-center justify-center mx-2 md:mx-6">
       <div className="absolute inset-0">
         <Image
           src={movie_banner}
@@ -75,7 +75,20 @@ const HeroMovie: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <div className="relative flex flex-col justify-center items-center bg-white bg-opacity-80 border-2 p-6">
+           <motion.div 
+        className='absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-10 z-0' 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.5 }}
+        transition={{ duration: 1, ease: "easeInOut" }}
+      ></motion.div>
+      <motion.div 
+        className='absolute inset-0 bg-gradient-to-r from-red-500 to-red-700 opacity-10 z-0' 
+        style={{ clipPath: 'polygon(75% 0, 100% 0, 100% 100%, 31% 100%)' }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.5 }}
+        transition={{ duration: 1, ease: "easeInOut", delay: 0.5 }}
+      ></motion.div>
+          <div className="relative flex flex-col justify-center items-center bg-white border-black bg-opacity-80 border-2 p-6">
             <motion.h1
               className="text-3xl md:text-6xl font-bold text-black mb-4"
               initial={{ opacity: 0, y: -50 }}
