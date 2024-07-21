@@ -68,35 +68,35 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
         )}
         {age !== undefined && (
           <div className="flex items-center mb-2">
-            <FaBirthdayCake className="text-xl text-gray-600 mr-2" />
+            <FaBirthdayCake className="text-md text-gray-600 mr-2" />
             <span className="font-semibold text-gray-800">Age:</span>
             <p className="text-gray-700 ml-2">{age || 'N/A'}</p>
           </div>
         )}
         {gender && (
           <div className="flex items-center mb-2">
-            <FaVenusMars className="text-xl text-gray-600 mr-2" />
+            <FaVenusMars className="text-md text-gray-600 mr-2" />
             <span className="font-semibold text-gray-800">Gender:</span>
             <p className="text-gray-700 ml-2">{gender}</p>
           </div>
         )}
         {species && (
           <div className="flex items-center mb-2">
-            <FaPaw className="text-xl text-gray-600 mr-2" />
+            <FaPaw className="text-md text-gray-600 mr-2" />
             <span className="font-semibold text-gray-800">Species:</span>
             <p className="text-gray-700 ml-2">{species}</p>
           </div>
         )}
         {eyeColor && (
           <div className="flex items-center mb-2">
-             <FaEye className="text-xl text-gray-600 mr-2" />
+             <FaEye className="text-md text-gray-600 mr-2" />
             <span className="font-semibold text-gray-800">Eye Color:</span>
             {renderColorDot(eyeColor)}
           </div>
         )}
         {hairColor && (
           <div className="flex items-center mb-2">
-               <FaTint className="text-xl text-gray-600 mr-2" />
+               <FaTint className="text-md text-gray-600 mr-2" />
             <span className="font-semibold text-gray-800">Hair Color:</span>
             {renderColorDot(hairColor)}
           </div>

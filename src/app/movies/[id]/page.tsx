@@ -8,6 +8,7 @@ import { characterImages, characterMovies, locationImages, locationMovies } from
 import CharacterCard from '../../../components/movies/CharacterCard';
 import { FaClock, FaCalendarAlt, FaStar, FaArrowLeft, FaMapMarkerAlt } from 'react-icons/fa';
 import Footer from '@/components/Footer';
+import Loader from '@/components/Loader';
 
 interface Movie {
   id: string;
@@ -78,7 +79,9 @@ const MovieDetails = () => {
   }, [id]);
 
   if (loading) {
-    return <p className="text-center text-gray-600 h-screen">Loading...</p>;
+    return <div>
+      <Loader/>
+    </div>;
   }
 
   if (!movie) {
