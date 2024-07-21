@@ -87,7 +87,7 @@ const AboutUs = () => {
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 1.1, ease: "easeOut" }}
             >
-              Our films have captivated audiences with their imaginative worlds, beautiful animation, and heartwarming stories. From &quot;My Neighbor Totoro&quot; to &quot;Spirited Away,&quot; Studio Ghibli's films continue to inspire and enchant viewers of all ages.
+              Our films have captivated audiences with their imaginative worlds, beautiful animation, and heartwarming stories. From &quot;My Neighbor Totoro&quot; to &quot;Spirited Away,&quot; Studio Ghibli&apos;s films continue to inspire and enchant viewers of all ages.
             </motion.p>
             <motion.p
               className="text-md text-gray-900"

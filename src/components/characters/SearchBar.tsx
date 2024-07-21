@@ -19,10 +19,12 @@ const SearchBar: React.FC<SearchBarProps> = ({
   movieFilter,
   genderFilter,
   speciesFilter,
+  otherFilter,
   onSearchChange,
   onMovieFilterChange,
   onGenderFilterChange,
   onSpeciesFilterChange,
+  onOtherFilterChange,
 }) => {
   return (
     <div className="flex flex-col md:flex-row justify-between items-center mb-4 space-y-4 md:space-y-0 md:space-x-4">
@@ -91,6 +93,18 @@ const SearchBar: React.FC<SearchBarProps> = ({
             <option value="Cat">Cat</option>
             <option value="Animal">Animal</option>
             <option value="Other">Other</option>
+          </select>
+        )}
+        {otherFilter !== undefined && onOtherFilterChange !== undefined && (
+          <select
+            value={otherFilter}
+            onChange={onOtherFilterChange}
+            className="px-4 py-2 border border-gray-600 rounded-lg w-full md:w-auto"
+          >
+            <option value="All">All Others</option>
+            <option value="Option1">Option 1</option>
+            <option value="Option2">Option 2</option>
+            <option value="Option3">Option 3</option>
           </select>
         )}
       </div>
