@@ -73,7 +73,7 @@ const MovieDetails = () => {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${movie.movie_banner})` }}
       >
-        <div className="absolute top-12 left-96 z-50 flex flex-col justify-center items-center text-white text-center p-6 ">
+        <div className="absolute top-12 left-96 z-50 hidden md:flex flex-col justify-center items-center text-white text-center p-6 ">
           <div className="mb-4 flex flex-col md:flex-row justify-center md:justify-between items-center gap-8 md:gap-28">
             <div className="flex items-center text-xl bg-gray-800 bg-opacity-50 border border-white rounded-full px-4 py-2">
               <FaClock className="mr-2 text-2xl" />
@@ -96,7 +96,7 @@ const MovieDetails = () => {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="relative bg-gray-900 bg-opacity-60 bg-clip-padding backdrop-filter backdrop-blur-md  overflow-hidden flex-1"
+        className="relative bg-gray-900 bg-opacity-70 bg-clip-padding backdrop-filter backdrop-blur-md  overflow-hidden flex-1"
       >
         {/* Cover Image with Black Overlay */}
         <div className="relative h-48 md:h-56">
@@ -122,8 +122,8 @@ const MovieDetails = () => {
                 className="rounded-lg shadow-lg"
               />
             </div>
-            <div className="w-full md:w-3/4 md:pl-6 mt-20">
-              <h1 className="text-4xl font-bold mb-2 text-yellow-300">{movie.title}</h1>
+            <div className="w-full md:w-3/4 md:pl-6 md:mt-20 mt-4">
+              <h1 className="md:text-4xl text-2xl font-bold mb-2 text-yellow-300">{movie.title}</h1>
               <p className="text-2xl font-semibold text-gray-200 mb-4">{movie.original_title}</p>
               <p className="text-gray-300 mb-4">{movie.description}</p>
               <div className="space-y-4">
@@ -136,6 +136,20 @@ const MovieDetails = () => {
                 <p className="text-gray-200 text-lg">
                   <span className="font-semibold">Producer:</span> {movie.producer}
                 </p>
+                <div className="mb-4 mt-6 flex md:flex-row justify-center md:justify-between items-center gap-2 md:hidden">
+            <div className="flex items-center text-xl bg-gray-400 bg-opacity-50 border border-white rounded-full px-4 py-2">
+              <FaClock className="mr-2 text-md" />
+              <p>{movie.running_time}</p>
+            </div>
+            <div className="flex items-center text-md bg-gray-400 bg-opacity-50 border border-white rounded-full px-4 py-2">
+              <FaCalendarAlt className="mr-2 text-2xl" />
+              <p>{movie.release_date}</p>
+            </div>
+            <div className="flex items-center text-md bg-gray-400 bg-opacity-50 border border-white rounded-full px-4 py-2">
+              <FaStar className="mr-2 text-2xl" />
+              <p>{movie.rt_score}/100</p>
+            </div>
+          </div>
               </div>
             </div>
           </div>
