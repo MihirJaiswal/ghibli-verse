@@ -4,9 +4,9 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const videos = [
-  { id: 1, src: '/video1.mp4', thumbnail: '/thumbnail1.png' },
-  { id: 2, src: '/video2.mp4', thumbnail: '/thumbnail2.png' },
-  { id: 3, src: '/video3.mp4', thumbnail: '/thumbnail3.png' },
+  { id: 1, src: '/spiritedaway.mp4', thumbnail: '/thumbnail1.png' },
+  { id: 2, src: '/poppyhill.mp4', thumbnail: '/thumbnail2.png' },
+  { id: 3, src: '/arrietty.mp4', thumbnail: '/thumbnail3.png' },
 ];
 
 const VideoGallery = () => {
