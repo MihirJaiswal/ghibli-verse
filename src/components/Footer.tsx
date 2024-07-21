@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 const Footer = () => {
   return (
-    <footer className="bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 text-gray-800 py-8 px-4 relative mt-16 z-50 border-t border-black">
+    <footer className="bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 text-gray-800 py-8 px-4 relative  z-50 border-t border-black">
       <div 
         className='absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-50 z-0'
       ></div>

@@ -42,7 +42,7 @@ const VideoGallery = () => {
       </div>
 
       {/* Thumbnails Section */}
-      <div className="flex md:flex-col items-center justify-center p-4 space-y-4 md:w-1/3 bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border border-b md:border-t border-r border-black shadow-lg md:mr-2 md:my-16">
+      <div className="flex md:flex-col items-center justify-center p-4 space-y-4 md:w-1/4 bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border border-b md:border-t border-r border-black shadow-lg md:mr-2 md:my-16">
         {videos.map((video) => (
           <motion.div
             key={video.id}

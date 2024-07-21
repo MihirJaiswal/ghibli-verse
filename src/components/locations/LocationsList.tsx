@@ -6,6 +6,7 @@ import LocationCard from './LocationCard';
 import { locationImages } from '../../../constant/index';
 import Link from 'next/link';
 import { FaSearch } from 'react-icons/fa';
+import {motion} from 'framer-motion'
 
 interface Location {
   id: string;
@@ -56,9 +57,16 @@ const LocationsList: React.FC = () => {
   }
 
   return (
-    <div className='mx-2 md:mx-6 relative bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 border border-black p-2'>
+    <div className='mx-2 md:mx-6 relative bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 border border-black p-2 mb-12'>
+      <motion.div 
+        className='absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-40 z-0' 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 0.5 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1, ease: "easeInOut" }}
+      ></motion.div>
       <div className="container mx-auto p-4">
-        <h1 className="text-2xl text-center md:text-left md:text-3xl font-bold md:mt-12 mb-12">Studio Ghibli Locations</h1>
+        <h1 className="text-2xl text-center md:text-left md:text-3xl font-bold md:mt-12 mb-12 relative">Studio Ghibli Locations</h1>
         <div className="relative  mt-6">
           <input
             type="text"
@@ -71,7 +79,6 @@ const LocationsList: React.FC = () => {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filteredLocations.map((location) => (
-            <Link key={location.id} href={`/locations/${location.id}`}>
               <div>
                 <LocationCard
                   id={location.id}
@@ -82,7 +89,6 @@ const LocationsList: React.FC = () => {
                   image={locationImages[location.name] || '/path/to/default.jpg'} // Ensure locationImages is used properly
                 />
               </div>
-            </Link>
           ))}
         </div>
       </div>

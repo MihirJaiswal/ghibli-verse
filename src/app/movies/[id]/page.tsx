@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { characterImages, characterMovies, locationImages, locationMovies } from '../../../../constant/index';
 import CharacterCard from '../../../components/movies/CharacterCard';
 import { FaClock, FaCalendarAlt, FaStar, FaArrowLeft, FaMapMarkerAlt } from 'react-icons/fa';
+import Footer from '@/components/Footer';
 
 interface Movie {
   id: string;
@@ -106,7 +107,7 @@ const MovieDetails = () => {
           <div className="mb-4 flex flex-col md:flex-row justify-center md:justify-between items-center gap-8 md:gap-28">
             <div className="flex items-center text-xl bg-gray-800 bg-opacity-50 border border-white rounded-full px-4 py-2">
               <FaClock className="mr-2 text-2xl" />
-              <p>{movie.running_time}</p>
+              <p>{movie.running_time} min</p>
             </div>
             <div className="flex items-center text-xl bg-gray-800 bg-opacity-50 border border-white rounded-full px-4 py-2">
               <FaCalendarAlt className="mr-2 text-2xl" />
@@ -125,7 +126,7 @@ const MovieDetails = () => {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="relative bg-gray-900 bg-opacity-70 bg-clip-padding backdrop-filter backdrop-blur-md overflow-hidden flex-1"
+        className="relative bg-[#181830] bg-opacity-70 bg-clip-padding backdrop-filter backdrop-blur-md overflow-hidden flex-1 "
       >
         {/* Cover Image with Black Overlay */}
         <div className="relative h-48 md:h-56">
@@ -243,6 +244,7 @@ const MovieDetails = () => {
           </button>
         </div>
       </motion.div>
+      <Footer/>
     </div>
   );
 };

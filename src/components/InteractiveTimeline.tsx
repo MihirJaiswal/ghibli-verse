@@ -63,7 +63,7 @@ const InteractiveTimeline = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border border-black px-4 py-12 md:px-8 md:ml-8 md:mr-6 relative mx-2">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border border-black px-4 py-12 md:px-8 md:ml-8 md:mr-6 relative mx-2 mb-12">
       <motion.div 
         className='absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-50 z-0' 
         initial={{ opacity: 0 }}

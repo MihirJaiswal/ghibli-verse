@@ -4,8 +4,8 @@ import { useRouter } from 'next/navigation';
 import { getCharacters } from '../../services/ghibli';
 import SearchBar from './SearchBar';
 import CharacterCard from './CharacterCard';
-import { characterMovies, characterImages } from '../../../constant';
-import {motion} from 'framer-motion'
+import { characterMovies, characterImages, characterDetails } from '../../../constant';
+import { motion } from 'framer-motion';
 
 const CharacterGrid: React.FC = () => {
   const [characters, setCharacters] = useState<any[]>([]);
@@ -14,7 +14,9 @@ const CharacterGrid: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [movieFilter, setMovieFilter] = useState<string>('All');
-  const [otherFilter, setOtherFilter] = useState<string>('All');
+  const [speciesFilter, setSpeciesFilter] = useState<string>('All');
+  const [genderFilter, setGenderFilter] = useState<string>('All');
+  const [visibleCount, setVisibleCount] = useState(4); // Number of characters to show initially
   const router = useRouter();
 
   useEffect(() => {
@@ -46,19 +48,22 @@ const CharacterGrid: React.FC = () => {
         });
       }
 
-      if (otherFilter !== 'All') {
+      if (speciesFilter !== 'All') {
         result = result.filter(character => {
-          const speciesMatch = character.species === otherFilter;
-          const genderMatch = character.gender === otherFilter;
-          return speciesMatch || genderMatch;
+          const species = characterDetails[character.name]?.species;
+          return species === speciesFilter;
         });
+      }
+
+      if (genderFilter !== 'All') {
+        result = result.filter(character => character.gender === genderFilter);
       }
 
       setFilteredCharacters(result);
     };
 
     filterCharacters();
-  }, [searchTerm, movieFilter, otherFilter, characters]);
+  }, [searchTerm, movieFilter, speciesFilter, genderFilter, characters]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -68,8 +73,16 @@ const CharacterGrid: React.FC = () => {
     setMovieFilter(event.target.value);
   };
 
-  const handleOtherFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setOtherFilter(event.target.value);
+  const handleSpeciesFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSpeciesFilter(event.target.value);
+  };
+
+  const handleGenderFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setGenderFilter(event.target.value);
+  };
+
+  const handleLoadMore = () => {
+    setVisibleCount(prevCount => prevCount + 4); // Increase count by 4
   };
 
   if (loading) {
@@ -85,35 +98,54 @@ const CharacterGrid: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 md:p-10 mx-2 md:mx-6  border border-black relative">
-       <motion.div 
+    <div className="min-h-screen bg-gray-100 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 md:p-10 mx-2 md:mx-6 border border-black relative">
+      <motion.div 
         className='absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-10 z-0' 
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.5 }}
         transition={{ duration: 1, ease: "easeInOut" }}
-      ></motion.div>
-      <h1 className="text-4xl md:text-5xl font-bold text-center mb-10 text-gray-800 mt-6 md:mt-2 relative">Some Characters</h1>
-      <div className="container mx-auto md:px-4 relative">
+      />
+      <h1 className="text-4xl md:text-5xl font-bold text-center mb-10 text-gray-800 mt-6 md:mt-2 relative z-10">Some Characters</h1>
+      <div className="container mx-auto md:px-4 relative z-10">
         <SearchBar
           searchTerm={searchTerm}
           movieFilter={movieFilter}
-          genderFilter={otherFilter}
+          speciesFilter={speciesFilter}
+          genderFilter={genderFilter}
           onSearchChange={handleSearchChange}
           onMovieFilterChange={handleMovieFilterChange}
-          onGenderFilterChange={handleOtherFilterChange}
+          onSpeciesFilterChange={handleSpeciesFilterChange}
+          onGenderFilterChange={handleGenderFilterChange}
         />
-        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-8 my-8">
-          {filteredCharacters.map((character) => (
-            <CharacterCard
-              key={character.id}
-              id={character.id}
-              name={character.name}
-              image={characterImages[character.name] || '/path/to/default.jpg'}
-              film={characterMovies[character.name]}
-              onClick={() => router.push(`/characters/${character.id}`)}
-            />
-          ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 my-8">
+          {filteredCharacters.slice(0, visibleCount).map((character) => {
+            const details = characterDetails[character.name] || {};
+            return (
+              <CharacterCard
+                key={character.id}
+                id={character.id}
+                name={character.name}
+                image={characterImages[character.name] || '/path/to/default.jpg'}
+                film={characterMovies[character.name]}
+                age={character.age}
+                gender={character.gender}
+                species={details.species}
+                eyeColor={character.eye_color}
+                hairColor={character.hair_color}
+              />
+            );
+          })}
         </div>
+        {filteredCharacters.length > visibleCount && (
+          <div className="flex justify-center my-6">
+            <button
+              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 border"
+              onClick={handleLoadMore}
+            >
+              Load More
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
