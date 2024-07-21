@@ -6,7 +6,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { characterImages, characterMovies } from '../../../../constant/index';
 import CharacterCard from '../../../components/movies/CharacterCard';
-import { FaClock, FaCalendarAlt, FaStar } from 'react-icons/fa';
+import { FaClock, FaCalendarAlt, FaStar, FaArrowLeft } from 'react-icons/fa';
 
 interface Movie {
   id: string;
@@ -122,7 +122,7 @@ const MovieDetails = () => {
                 className="rounded-lg shadow-lg"
               />
             </div>
-            <div className="w-full md:w-3/4 md:pl-6 mt-12">
+            <div className="w-full md:w-3/4 md:pl-6 mt-20">
               <h1 className="text-4xl font-bold mb-2 text-yellow-300">{movie.title}</h1>
               <p className="text-2xl font-semibold text-gray-200 mb-4">{movie.original_title}</p>
               <p className="text-gray-300 mb-4">{movie.description}</p>
@@ -157,12 +157,13 @@ const MovieDetails = () => {
           </div>
         </div>
 
-        <div className="p-6">
+        {/* Fixed Go Back Button */}
+        <div className="fixed top-6 left-6 z-50">
           <button
             onClick={() => router.back()}
-            className="fixed top-0 left-0 bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 transition-colors"
+            className="bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 transition-colors flex items-center justify-center"
           >
-            Go Back
+            <FaArrowLeft className="text-2xl" />
           </button>
         </div>
       </motion.div>
