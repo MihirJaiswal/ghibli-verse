@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { characterMovies, characterImages, characterDetails } from '../../../constant/index'; 
 import SearchBar from './SearchBar'; 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 interface AllCharactersProps {
   names: string[];
@@ -100,7 +101,9 @@ const AllCharacters: React.FC<AllCharactersProps> = ({ names }) => {
 
             return (
               <div key={name} className="bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 p-4 border border-black shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl">
-                <img
+                <Image
+                  width={400}
+                  height={250}
                   src={imageUrl}
                   alt={name}
                   className="w-full h-48 object-cover mb-4"

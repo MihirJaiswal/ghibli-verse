@@ -108,9 +108,9 @@ const HeroSection = () => {
       >
          <div className='backdrop-filter-[12px] relative inline-flex h-full md:h-7 items-center justify-between rounded-full border border-white/5 bg-white/20 px-3 text-xs text-white transition-all ease-in hover:cursor-pointer hover:bg-white/20 group gap-1 translate-y-[-1rem] animate-fade-in'>
           <TextShimmer className="inline-flex items-center justify-center relative">
-            <span className='text-gray-800'>"✨ Experience the magic of storytelling and imagination with us."</span>{" "}
-          <FaArrowRight className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5 text-gray-700" />
-        </TextShimmer>
+            <span className='text-gray-800'>&quot;✨ Experience the magic of storytelling and imagination with us.&quot;</span>{" "}
+            <FaArrowRight className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5 text-gray-700" />
+          </TextShimmer>
          </div>
       </motion.div>
       <motion.div 
@@ -119,7 +119,7 @@ const HeroSection = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 2 }}
       >
-        <p>"✨  Experience the magic of storytelling and imagination with us."</p>
+        <p>&quot;✨ Experience the magic of storytelling and imagination with us.&quot;</p>
       </motion.div>
     </div>
   );

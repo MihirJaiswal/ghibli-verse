@@ -107,14 +107,6 @@ const CharacterGrid: React.FC = () => {
     );
   }
 
-  if (error) {
-    return <div className="flex items-center justify-center min-h-screen text-red-500 text-xl">{error}</div>;
-  }
-
-  if (filteredCharacters.length === 0) {
-    return <div className="flex items-center justify-center min-h-screen text-xl relative">No characters found</div>;
-  }
-
   return (
     <div className="min-h-screen bg-gray-100 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 md:p-10 mx-2 md:mx-6 border border-black relative">
       <motion.div 
@@ -135,34 +127,42 @@ const CharacterGrid: React.FC = () => {
           onSpeciesFilterChange={handleSpeciesFilterChange}
           onGenderFilterChange={handleGenderFilterChange}
         />
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 my-8">
-          {filteredCharacters.slice(0, visibleCount).map((character) => {
-            const details = characterDetails[character.name] || {};
-            return (
-              <CharacterCard
-                key={character.id}
-                id={character.id}
-                name={character.name}
-                image={characterImages[character.name] || '/path/to/default.jpg'}
-                film={characterMovies[character.name]}
-                age={character.age}
-                gender={character.gender}
-                species={details.species}
-                eyeColor={character.eye_color}
-                hairColor={character.hair_color}
-              />
-            );
-          })}
-        </div>
-        {filteredCharacters.length > visibleCount && (
-          <div className="flex justify-center my-6">
-            <button
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 border"
-              onClick={handleLoadMore}
-            >
-              Load More
-            </button>
-          </div>
+        {error ? (
+          <div className="flex items-center justify-center min-h-screen text-red-500 text-xl">{error}</div>
+        ) : filteredCharacters.length === 0 ? (
+          <div className="flex items-center justify-center min-h-screen text-xl relative">No characters found</div>
+        ) : (
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 my-8">
+              {filteredCharacters.slice(0, visibleCount).map((character) => {
+                const details = characterDetails[character.name] || {};
+                return (
+                  <CharacterCard
+                    key={character.id}
+                    id={character.id}
+                    name={character.name}
+                    image={characterImages[character.name] || '/path/to/default.jpg'}
+                    film={characterMovies[character.name]}
+                    age={character.age}
+                    gender={character.gender}
+                    species={details.species}
+                    eyeColor={character.eye_color}
+                    hairColor={character.hair_color}
+                  />
+                );
+              })}
+            </div>
+            {filteredCharacters.length > visibleCount && (
+              <div className="flex justify-center my-6">
+                <button
+                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 border"
+                  onClick={handleLoadMore}
+                >
+                  Load More
+                </button>
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>
