@@ -47,7 +47,7 @@ const HeroMovie: React.FC = () => {
   const mobileTruncatedDescription = description.split(' ').slice(0, 60).join(' ') + '...';
 
   return (
-    <div className="relative md:w-[96%] h-[80vh] bg-black text-white border border-gray-900 mt-28 md:mt-24 flex items-center justify-center mx-2 md:mx-6">
+    <div className="relative md:w-[96%] h-[80vh] bg-white text-white border border-gray-900 mt-28 md:mt-24 flex items-center justify-center mx-2 md:mx-6">
       <div className="absolute inset-0">
         <Image
           src={movie_banner}

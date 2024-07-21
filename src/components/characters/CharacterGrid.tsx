@@ -5,6 +5,7 @@ import { getCharacters } from '../../services/ghibli';
 import SearchBar from './SearchBar';
 import CharacterCard from './CharacterCard';
 import { characterMovies, characterImages } from '../../../constant';
+import {motion} from 'framer-motion'
 
 const CharacterGrid: React.FC = () => {
   const [characters, setCharacters] = useState<any[]>([]);
@@ -72,7 +73,7 @@ const CharacterGrid: React.FC = () => {
   };
 
   if (loading) {
-    return <div className="flex items-center justify-center min-h-screen text-2xl">Loading...</div>;
+    return <div className="flex items-center justify-center min-h-screen text-2xl relative">Loading...</div>;
   }
 
   if (error) {
@@ -80,13 +81,19 @@ const CharacterGrid: React.FC = () => {
   }
 
   if (filteredCharacters.length === 0) {
-    return <div className="flex items-center justify-center min-h-screen text-xl">No characters found</div>;
+    return <div className="flex items-center justify-center min-h-screen text-xl relative">No characters found</div>;
   }
 
   return (
     <div className="min-h-screen bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 md:p-10 mx-2 md:mx-6  border border-black relative">
-      <h1 className="text-4xl md:text-5xl font-bold text-center mb-10 text-gray-800 mt-6 md:mt-2">Some Characters</h1>
-      <div className="container mx-auto md:px-4">
+       <motion.div 
+        className='absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-10 z-0' 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.5 }}
+        transition={{ duration: 1, ease: "easeInOut" }}
+      ></motion.div>
+      <h1 className="text-4xl md:text-5xl font-bold text-center mb-10 text-gray-800 mt-6 md:mt-2 relative">Some Characters</h1>
+      <div className="container mx-auto md:px-4 relative">
         <SearchBar
           searchTerm={searchTerm}
           movieFilter={movieFilter}

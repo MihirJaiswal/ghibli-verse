@@ -11,15 +11,16 @@ export const sidebarLinks = [
         route:'/movies'
     },
     {
+      label: 'Characters',
+      imgUrl : "/people.svg",   
+      route:'/characters'
+    },
+    {
         label: 'Locations',
         imgUrl : "/location.svg",   
         route:'/locations'
     },
-    {
-        label: 'Characters',
-        imgUrl : "/people.svg",   
-        route:'/characters'
-    },
+   
    
 ]
 
@@ -588,7 +589,7 @@ export const characterMovies: Record<string, string> = {
     "Tatsuo Kusakabe": { movie: "My Neighbor Totoro", gender: "Male", species: "Human" },
     "Toichi": { movie: "When Marnie Was There", gender: "Male", species: "Human" },
     "Toki": { movie: "Ponyo", gender: "Female", species: "Human" },
-    "Toto": { movie: "The Cat Returns and The Secret World of Arrietty", gender: "Unknown", species: "Cat" },
+    "Toto": { movie: "The Cat Returns and The Secret World of Arrietty", gender: "Unknown", species: "animal" },
     "Niya": { movie: "The Secret World of Arrietty", gender: "Male", species: "Human" },
     "Totoro": { movie: "My Neighbor Totoro", gender: "Male", species: "Spirit" },
     "Train Operator": { movie: "Castle in the Sky", gender: "Male", species: "Human" },

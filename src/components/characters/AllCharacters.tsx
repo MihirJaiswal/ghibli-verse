@@ -1,7 +1,8 @@
 'use client'
 import React, { useState } from 'react';
-import { characterMovies, characterImages, characterDetails } from '../../../constant/index'; // Adjust the import path accordingly
-import SearchBar from './SearchBar'; // Adjust the import path accordingly
+import { characterMovies, characterImages, characterDetails } from '../../../constant/index'; 
+import SearchBar from './SearchBar'; 
+import {motion} from 'framer-motion'
 
 interface AllCharactersProps {
   names: string[];
@@ -65,9 +66,15 @@ const AllCharacters: React.FC<AllCharactersProps> = ({ names }) => {
 
   return (
     <div className="p-6 bg-gray-50 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 min-h-screen relative md:mx-6 mx-2 mt-12 border border-black">
+       <motion.div 
+        className='absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-10 z-0' 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.5 }}
+        transition={{ duration: 1, ease: "easeInOut" }}
+      ></motion.div>
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-extrabold text-gray-900 mb-6">All Characters</h1>
-        <div className='mt-8 mb-12'>
+        <h1 className="text-3xl font-extrabold text-gray-900 mb-6 relative">All Characters</h1>
+        <div className='mt-8 mb-12 relative'>
           <SearchBar
             searchTerm={searchTerm}
             movieFilter={movieFilter}
@@ -94,9 +101,9 @@ const AllCharacters: React.FC<AllCharactersProps> = ({ names }) => {
                   className="w-full h-48 object-cover mb-4"
                 />
                 <h2 className="text-xl font-bold mb-2">{name}</h2>
-                <p className="text-sm text-gray-700">{movie}</p>
-                <p className="text-sm text-gray-500">Gender: {gender}</p>
-                <p className="text-sm text-gray-500">Species: {species}</p>
+                <p className="text-sm text-gray-800">{movie}</p>
+                <p className="text-sm text-gray-700">Gender: {gender}</p>
+                <p className="text-sm text-gray-700">Species: {species}</p>
               </div>
             );
           })}
