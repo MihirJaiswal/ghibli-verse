@@ -638,7 +638,7 @@ export const characterMovies: Record<string, string> = {
 
   export const locationImages: { [key: string]: string } = {
     "Irontown": "/places/Irontown.webp",
-    "Gutiokipanja": "/places/gutiokipanja.webp",
+    "Gutiokipanja": "/places/Gutiokipanja.webp",
     "The Cat Kingdom": "/places/the_cat_kingdom.webp",
     "The Marsh House": "/places/the_marsh_house.webp",
     "Hospital": "/places/hospital.webp",
