@@ -4,9 +4,9 @@ import { getMovieById } from '../../../services/ghibli';
 import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { characterImages, characterMovies } from '../../../../constant/index';
+import { characterImages, characterMovies, locationImages, locationMovies } from '../../../../constant/index';
 import CharacterCard from '../../../components/movies/CharacterCard';
-import { FaClock, FaCalendarAlt, FaStar, FaArrowLeft } from 'react-icons/fa';
+import { FaClock, FaCalendarAlt, FaStar, FaArrowLeft, FaMapMarkerAlt } from 'react-icons/fa';
 
 interface Movie {
   id: string;
@@ -20,12 +20,23 @@ interface Movie {
   running_time: string;
   original_title: string;
   rt_score: string;
+  locations: string[]; // URLs to fetch locations
+}
+
+interface Location {
+  id: string;
+  name: string;
+  climate: string;
+  terrain: string;
+  surface_water: string;
+  residents: string[];
 }
 
 const MovieDetails = () => {
   const params = useParams();
   const { id } = params as { id: string };
   const [movie, setMovie] = useState<Movie | null>(null);
+  const [locations, setLocations] = useState<Location[]>([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
@@ -35,6 +46,23 @@ const MovieDetails = () => {
         try {
           const movieData = await getMovieById(id);
           setMovie(movieData);
+
+          // Fetch locations related to this movie
+          const locationUrls: string[] = movieData.locations;
+          if (locationUrls.length > 0) {
+            const locationResponses = await Promise.all(locationUrls.map(async (url: string) => {
+              const response = await fetch(url);
+              return response.json();
+            }));
+
+            const allLocations = locationResponses.flat();
+
+            // Filter locations that match the movie
+            const filteredLocations = allLocations.filter((location: Location) =>
+              locationMovies[location.name]?.includes(movieData.title)
+            );
+            setLocations(filteredLocations);
+          }
         } catch (error) {
           console.error("Error fetching movie:", error);
         } finally {
@@ -73,6 +101,7 @@ const MovieDetails = () => {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${movie.movie_banner})` }}
       >
+       
         <div className="absolute top-12 left-96 z-50 hidden md:flex flex-col justify-center items-center text-white text-center p-6 ">
           <div className="mb-4 flex flex-col md:flex-row justify-center md:justify-between items-center gap-8 md:gap-28">
             <div className="flex items-center text-xl bg-gray-800 bg-opacity-50 border border-white rounded-full px-4 py-2">
@@ -96,7 +125,7 @@ const MovieDetails = () => {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="relative bg-gray-900 bg-opacity-70 bg-clip-padding backdrop-filter backdrop-blur-md  overflow-hidden flex-1"
+        className="relative bg-gray-900 bg-opacity-70 bg-clip-padding backdrop-filter backdrop-blur-md overflow-hidden flex-1"
       >
         {/* Cover Image with Black Overlay */}
         <div className="relative h-48 md:h-56">
@@ -137,19 +166,19 @@ const MovieDetails = () => {
                   <span className="font-semibold">Producer:</span> {movie.producer}
                 </p>
                 <div className="mb-4 mt-6 flex md:flex-row justify-center md:justify-between items-center gap-2 md:hidden">
-            <div className="flex items-center text-xl bg-gray-400 bg-opacity-50 border border-white rounded-full px-4 py-2">
-              <FaClock className="mr-2 text-md" />
-              <p>{movie.running_time}</p>
-            </div>
-            <div className="flex items-center text-md bg-gray-400 bg-opacity-50 border border-white rounded-full px-4 py-2">
-              <FaCalendarAlt className="mr-2 text-2xl" />
-              <p>{movie.release_date}</p>
-            </div>
-            <div className="flex items-center text-md bg-gray-400 bg-opacity-50 border border-white rounded-full px-4 py-2">
-              <FaStar className="mr-2 text-2xl" />
-              <p>{movie.rt_score}/100</p>
-            </div>
-          </div>
+                  <div className="flex items-center text-xl bg-gray-400 bg-opacity-50 border border-white rounded-full px-4 py-2">
+                    <FaClock className="mr-2 text-md" />
+                    <p>{movie.running_time}</p>
+                  </div>
+                  <div className="flex items-center text-md bg-gray-400 bg-opacity-50 border border-white rounded-full px-4 py-2">
+                    <FaCalendarAlt className="mr-2 text-2xl" />
+                    <p>{movie.release_date}</p>
+                  </div>
+                  <div className="flex items-center text-md bg-gray-400 bg-opacity-50 border border-white rounded-full px-4 py-2">
+                    <FaStar className="mr-2 text-2xl" />
+                    <p>{movie.rt_score}/100</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -157,18 +186,51 @@ const MovieDetails = () => {
 
         <div className="p-6">
           <h2 className="text-4xl font-bold text-gray-100 mb-8">Characters</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {characterList.map((character) => (
-              <CharacterCard
-                key={character.id}
-                id={character.id}
-                name={character.name}
-                image={character.image}
-                film={character.film}
-                onClick={() => console.log(`Clicked on ${character.name}`)}
-              />
-            ))}
-          </div>
+          {characterList.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {characterList.map((character) => (
+                <CharacterCard
+                  key={character.id}
+                  id={character.id}
+                  name={character.name}
+                  image={character.image}
+                  film={character.film}
+                  onClick={() => console.log(`Clicked on ${character.name}`)}
+                />
+              ))}
+            </div>
+          ) : (
+            <p className="text-center text-gray-400">No characters found</p>
+          )}
+        </div>
+
+        {/* Locations Section */}
+        <div className="p-6">
+          <h2 className="text-4xl font-bold text-gray-100 mb-8">Locations</h2>
+          {locations.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {locations.map((location) => (
+                <div key={location.id} className="relative bg-gray-800 rounded-lg overflow-hidden">
+                  <Image
+                    src={locationImages[location.name] || '/path/to/default.jpg'}
+                    alt={location.name}
+                    layout="responsive"
+                    width={300}
+                    height={200}
+                    className="object-cover"
+                  />
+                  <div className="absolute bottom-0 left-0 bg-gray-900 bg-opacity-70 text-white p-4 w-full">
+                    <div className="flex items-center">
+                      <FaMapMarkerAlt className="inline mr-2" />
+                      {location.name}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-center text-gray-400">No locations found</p>
+          )}
         </div>
 
         {/* Fixed Go Back Button */}

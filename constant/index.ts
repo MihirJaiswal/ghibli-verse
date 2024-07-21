@@ -664,6 +664,35 @@ export const characterMovies: Record<string, string> = {
     "St. Morwald's Home for Children": "/places/st_morwalds_home_for_children.webp",
 };
 
+export const locationMovies: { [key: string]: string[] } = {
+  "Irontown": ["Castle in the Sky"],
+  "Gutiokipanja": ["Princess Mononoke"],
+  "The Cat Kingdom": ["Kiki's Delivery Service"],
+  "The Marsh House": ["Ponyo"],
+  "Hospital": ["Ponyo"],
+  "Gondoa": ["The Wind Rises"],
+  "Ursula's Log Cabin": ["Kiki's Delivery Service"],
+  "Zeniba's Cottage": ["Spirited Away"],
+  "Bamboo Forest": ["Princess Mononoke"],
+  "Pazu's Mines": ["Castle in the Sky"],
+  "Shizuku's Apartment": ["Whisper of the Heart"],
+  "Laputa": ["Castle in the Sky"],
+  "Tedis": ["The Tale of the Princess Kaguya"],
+  "Koriko": ["Kiki's Delivery Service"],
+  "Forest": ["Princess Mononoke"],
+  "Bathhouse": ["Spirited Away"],
+  "Matsugo": ["The Tale of the Princess Kaguya"],
+  "Taeko's House": ["Only Yesterday"],
+  "Piccolo S.P.A.": ["Ponyo"],
+  "Karikiya": ["The Cat Returns"],
+  "Satsuki's School House": ["My Neighbor Totoro"],
+  "Fujimoto's Underwater Harbor": ["Ponyo"],
+  "Himawari Nursery School": ["My Neighbor Totoro"],
+  "Ingary": ["Howl's Moving Castle"],
+  "St. Morwald's Home for Children": ["Kiki's Delivery Service"],
+};
+
+
 
 export const featuredImages: { [key: string]: string } = {
     "pic1": "/places/featured/pic2.jpeg",

@@ -14,7 +14,7 @@ export default function Home() {
     <div className="relative min-h-screen bg-bg1 bg-cover bg-center bg-no-repeat">
       {/* Background overlays */}
       <div className="fixed inset-0 bg-bg2 bg-cover bg-center opacity-80 blur-sm pointer-events-none"></div>
-      <div className="fixed inset-0 bg-blue-500 bg-cover bg-center opacity-30 blur-sm pointer-events-none"></div>
+      <div className="fixed inset-0 bg-gray-900 bg-cover bg-center opacity-30 blur-sm pointer-events-none"></div>
       
       <div className="">
         <Sidebar />
