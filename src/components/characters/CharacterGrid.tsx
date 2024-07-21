@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { getCharacters } from '../../services/ghibli';
 import SearchBar from './SearchBar';
 import CharacterCard from './CharacterCard';
+import ShimmerCard from './ShimmerCard';
 import { characterMovies, characterImages, characterDetails } from '../../../constant';
 import { motion } from 'framer-motion';
 
@@ -86,7 +87,24 @@ const CharacterGrid: React.FC = () => {
   };
 
   if (loading) {
-    return <div className="flex items-center justify-center min-h-screen text-2xl relative">Loading...</div>;
+    return (
+      <div className="min-h-screen bg-gray-100 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 md:p-10 mx-2 md:mx-6 border border-black relative">
+        <motion.div 
+          className='absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-10 z-0' 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.5 }}
+          transition={{ duration: 1, ease: "easeInOut" }}
+        />
+        <h1 className="text-4xl md:text-5xl font-bold text-center mb-10 text-gray-800 mt-6 md:mt-2 relative z-10">Loading Characters...</h1>
+        <div className="container mx-auto md:px-4 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 my-8">
+            {Array(8).fill(0).map((_, index) => (
+              <ShimmerCard key={index} />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
   }
 
   if (error) {

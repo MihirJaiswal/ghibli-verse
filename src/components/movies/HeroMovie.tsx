@@ -38,7 +38,7 @@ const HeroMovie: React.FC = () => {
   };
 
   if (movies.length === 0) {
-    return <div>Loading...</div>;
+    return <div></div>;
   }
 
   const { title, description, movie_banner, image, rt_score } = movies[currentIndex];

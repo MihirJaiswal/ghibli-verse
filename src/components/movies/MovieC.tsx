@@ -3,12 +3,13 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FaChevronLeft, FaChevronRight, FaPlay } from 'react-icons/fa';
-import { getMovies } from '../../services/ghibli'; // Adjust the import path as needed
-import { youtubeLinks } from '../../../constant/index'; // Import the YouTube links
+import { getMovies } from '../../services/ghibli';
+import { youtubeLinks } from '../../../constant/index';
+import MovieCShimmer from './MovieCShimmer';
 
 const MovieC: React.FC = () => {
   const [movies, setMovies] = useState<any[]>([]);
-  const [currentIndex, setCurrentIndex] = useState(10);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [showMore, setShowMore] = useState(false);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
@@ -38,7 +39,7 @@ const MovieC: React.FC = () => {
   };
 
   if (movies.length === 0) {
-    return <div>Loading...</div>;
+    return <MovieCShimmer />;
   }
 
   const { title, description, image, rt_score } = movies[currentIndex];
@@ -71,16 +72,15 @@ const MovieC: React.FC = () => {
             >
               {title}
             </motion.h1>
-            
           </div>
           <motion.div
-              className="text-lg md:text-2xl font-bold text-red-600 mb-2 flex items-center justify-center rounded-lg gap-2 bg-white/70 w-24 absolute bottom-0 left-0"
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.6 }}
-            >
-              <Image src='/Rotten_Tomatoes.svg' alt='rt score' width={25} height={25} /> <span>: {rt_score}</span>
-            </motion.div>
+            className="text-lg md:text-2xl font-bold text-red-600 mb-2 flex items-center justify-center rounded-lg gap-2 bg-white/70 w-24 absolute bottom-0 left-0"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.6 }}
+          >
+            <Image src='/Rotten_Tomatoes.svg' alt='rt score' width={25} height={25} /> <span>: {rt_score}</span>
+          </motion.div>
           <div className="flex flex-col items-center justify-center">
             <div className="relative w-full h-96 flex justify-center items-center">
               <Image
@@ -93,7 +93,7 @@ const MovieC: React.FC = () => {
                 className="object-contain"
                 onLoadingComplete={() => setIsImageLoaded(true)}
               />
-              {!isImageLoaded && <div className="absolute inset-0 flex items-center justify-center text-white">Loading...</div>}
+              {!isImageLoaded && <div className=""></div>}
             </div>
             <motion.a
               href={youtubeLink}
@@ -116,7 +116,6 @@ const MovieC: React.FC = () => {
           >
             {showMore ? description : window.innerWidth < 768 ? mobileTruncatedDescription : truncatedDescription}
           </motion.p>
-       
           <button
             onClick={handlePrevious}
             className="absolute left-4 md:left-8 top-1/2 transform -translate-y-1/2 bg-gray-100 text-black p-2 rounded-full z-20"

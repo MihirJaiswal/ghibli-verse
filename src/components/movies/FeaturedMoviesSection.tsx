@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -6,6 +6,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getMovies } from '../../services/ghibli';
+import ShimmerCard from '../../components/characters/ShimmerCard';
 import { motion } from 'framer-motion';
 
 interface Movie {
@@ -26,6 +27,7 @@ const truncateTitle = (title: string, wordLimit: number) => {
 
 const FeaturedMoviesSlider: React.FC<FeaturedMoviesSliderProps> = ({ count }) => {
   const [featuredMovies, setFeaturedMovies] = useState<Movie[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -36,6 +38,8 @@ const FeaturedMoviesSlider: React.FC<FeaturedMoviesSliderProps> = ({ count }) =>
         setFeaturedMovies(topMovies);
       } catch (error) {
         console.error("Error fetching movies:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -85,36 +89,46 @@ const FeaturedMoviesSlider: React.FC<FeaturedMoviesSliderProps> = ({ count }) =>
       ></motion.div>
       <h2 className="text-2xl md:text-left text-center font-bold mb-4 relative">Featured Movies</h2>
       <div className="">
-        <Slider {...settings}>
-          {featuredMovies.map((movie) => (
-            <Link href={`/movies/${movie.id}`} key={movie.id} passHref>
-              <motion.div 
-                className="p-4 mx-2 cursor-pointer" 
-                whileHover={{ scale: 1.05 }}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-              >
-                <div className="relative w-full h-56 mb-2">
-                  <Image
-                    src={movie.image}
-                    alt={`${movie.title} Poster`}
-                    layout="fill"
-                    objectFit="contain"
-                    className="object-contain rounded-lg"
-                  />
-                </div>
-                <h3 className="text-lg font-bold mb-1 text-center">{truncateTitle(movie.title, 4)}</h3>
-                <p className="text-sm text-gray-700 text-center flex items-center justify-center gap-1">
-                  Rotten Tomatoes
-                  <Image src='/Rotten_Tomatoes.svg' alt='rotten tomatoes svg' width={20} height={20} />
-                  : <span className='font-semibold'>{movie.rt_score}</span>
-                </p>
-              </motion.div>
-            </Link>
-          ))}
-        </Slider>
+        {loading ? (
+          <Slider {...settings}>
+            {Array(4).fill(0).map((_, index) => (
+              <div key={index} className="p-4 mx-2">
+                <ShimmerCard />
+              </div>
+            ))}
+          </Slider>
+        ) : (
+          <Slider {...settings}>
+            {featuredMovies.map((movie) => (
+              <Link href={`/movies/${movie.id}`} key={movie.id} passHref>
+                <motion.div 
+                  className="p-4 mx-2 cursor-pointer" 
+                  whileHover={{ scale: 1.05 }}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <div className="relative w-full h-56 mb-2">
+                    <Image
+                      src={movie.image}
+                      alt={`${movie.title} Poster`}
+                      layout="fill"
+                      objectFit="contain"
+                      className="object-contain rounded-lg"
+                    />
+                  </div>
+                  <h3 className="text-lg font-bold mb-1 text-center">{truncateTitle(movie.title, 4)}</h3>
+                  <p className="text-sm text-gray-700 text-center flex items-center justify-center gap-1">
+                    Rotten Tomatoes
+                    <Image src='/Rotten_Tomatoes.svg' alt='rotten tomatoes svg' width={20} height={20} />
+                    : <span className='font-semibold'>{movie.rt_score}</span>
+                  </p>
+                </motion.div>
+              </Link>
+            ))}
+          </Slider>
+        )}
       </div>
     </div>
   );

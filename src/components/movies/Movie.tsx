@@ -1,8 +1,8 @@
-// src/app/page.tsx
-'use client'
+'use client';
 import React, { useState, useEffect } from 'react';
 import MovieList from './MovieList';
 import { getMovies } from '../../services/ghibli';
+import ShimmerCard from '../../components/characters/ShimmerCard';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FaSearch } from 'react-icons/fa';
@@ -20,6 +20,7 @@ const Movie = () => {
   const [filteredMovies, setFilteredMovies] = useState<Movie[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortCriteria, setSortCriteria] = useState<string>('title');
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -29,6 +30,8 @@ const Movie = () => {
         setFilteredMovies(fetchedMovies);
       } catch (error) {
         console.error("Error fetching movies:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -54,12 +57,12 @@ const Movie = () => {
   return (
     <div className="min-h-screen mx-2 md:mx-6">
       <main className="relative p-6 bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border border-black my-8">
-      <motion.div 
-        className='absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-50 z-0' 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.5 }}
-        transition={{ duration: 1, ease: "easeInOut" }}
-      ></motion.div>
+        <motion.div 
+          className='absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-50 z-0' 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.5 }}
+          transition={{ duration: 1, ease: "easeInOut" }}
+        ></motion.div>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -91,7 +94,13 @@ const Movie = () => {
           </select>
         </div>
 
-        {filteredMovies.length > 0 ? (
+        {loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {Array(8).fill(0).map((_, index) => (
+              <ShimmerCard key={index} />
+            ))}
+          </div>
+        ) : (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -100,8 +109,6 @@ const Movie = () => {
           >
             <MovieList movies={filteredMovies} />
           </motion.div>
-        ) : (
-          <p className="text-center text-xl">Loading...</p>
         )}
       </main>
     </div>
