@@ -75,7 +75,7 @@ const FeaturedMoviesSlider: React.FC<FeaturedMoviesSliderProps> = ({ count }) =>
   };
 
   return (
-    <div className="mt-32 md:mt-20 md:mx-6 bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 relative border border-black p-8 mx-2">
+    <div className="mt-8 md:mx-6 bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 relative border border-black p-8 mx-2">
       <motion.div 
         className='absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-40 z-0' 
         initial={{ opacity: 0 }}

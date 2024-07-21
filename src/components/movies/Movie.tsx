@@ -53,7 +53,7 @@ const Movie = () => {
 
   return (
     <div className="min-h-screen mx-2 md:mx-6">
-      <main className="relative p-6 bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border border-black my-16">
+      <main className="relative p-6 bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border border-black my-8">
       <motion.div 
         className='absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-50 z-0' 
         initial={{ opacity: 0 }}
