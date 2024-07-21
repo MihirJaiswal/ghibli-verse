@@ -2,7 +2,8 @@
 import React from 'react';
 import Image from 'next/image';
 import { characterImages } from '../../../constant';
-import { FaBirthdayCake, FaVenusMars, FaEye, FaTint, FaPaw } from 'react-icons/fa';
+import { FaBirthdayCake, FaVenusMars, FaEye, FaTint, FaPaw  } from 'react-icons/fa';
+import { colorMap } from '../../lib/colorMap'; // Adjust path if necessary
 
 interface CharacterCardProps {
   id: string;
@@ -28,6 +29,23 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
   hairColor,
 }) => {
   const imageUrl = characterImages[name] || '/path/to/default.jpg';
+
+  // Helper function to render a color dot
+  const renderColorDot = (color: string | undefined) => {
+    const colorHex = color ? colorMap[color] || color : 'transparent';
+    return (
+      <div
+        style={{
+          width: '16px',
+          height: '16px',
+          borderRadius: '50%',
+          backgroundColor: colorHex,
+          display: 'inline-block',
+          marginLeft: '8px',
+        }}
+      />
+    );
+  };
 
   return (
     <div
@@ -71,16 +89,16 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
         )}
         {eyeColor && (
           <div className="flex items-center mb-2">
-            <FaEye className="text-xl text-gray-600 mr-2" />
+             <FaEye className="text-xl text-gray-600 mr-2" />
             <span className="font-semibold text-gray-800">Eye Color:</span>
-            <p className="text-gray-700 ml-2">{eyeColor || 'N/A'}</p>
+            {renderColorDot(eyeColor)}
           </div>
         )}
         {hairColor && (
           <div className="flex items-center mb-2">
-            <FaTint className="text-xl text-gray-600 mr-2" />
+               <FaTint className="text-xl text-gray-600 mr-2" />
             <span className="font-semibold text-gray-800">Hair Color:</span>
-            <p className="text-gray-700 ml-2">{hairColor || 'N/A'}</p>
+            {renderColorDot(hairColor)}
           </div>
         )}
       </div>
