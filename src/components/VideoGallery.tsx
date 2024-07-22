@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { FaPlay } from 'react-icons/fa';
 
 const videos = [
   { id: 1, src: '/spiritedaway.mp4', thumbnail: '/thumbnail1.png' },
@@ -11,6 +12,7 @@ const videos = [
 
 const VideoGallery = () => {
   const [selectedVideo, setSelectedVideo] = useState(videos[0].src);
+
   useEffect(() => {
     const videoElement = document.querySelector('video');
     if (videoElement) {
@@ -44,7 +46,7 @@ const VideoGallery = () => {
         {videos.map((video) => (
           <motion.div
             key={video.id}
-            className={`cursor-pointer ${selectedVideo === video.src ? 'border-4 border-white-500' : ''} transition-transform duration-300`}
+            className={`relative cursor-pointer ${selectedVideo === video.src ? 'border-4 border-blue-500' : ''} transition-transform duration-300`}
             onClick={() => setSelectedVideo(video.src)}
             initial={{ scale: 0.9 }}
             whileHover={{ scale: 1.02 }}
@@ -55,8 +57,13 @@ const VideoGallery = () => {
               alt={`Thumbnail ${video.id}`}
               width={300}
               height={200}
-              className="object-cover shadow-md md:w-60"
+              className={`object-cover shadow-md md:w-60 ${selectedVideo === video.src ? '' : 'opacity-70'}`}
             />
+            {selectedVideo !== video.src && (
+              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                <FaPlay className="text-white text-4xl" />
+              </div>
+            )}
           </motion.div>
         ))}
       </div>
