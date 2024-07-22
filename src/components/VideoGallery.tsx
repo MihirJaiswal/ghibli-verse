@@ -19,31 +19,32 @@ const VideoGallery = () => {
   }, [selectedVideo]);
 
   return (
-    <div className="flex relative flex-col md:flex-row md:min-h-screen w-full p-2 md:p-4 ">
+    <div className="flex relative flex-col md:flex-row md:min-h-screen w-full p-2 md:p-4">
       {/* Video Section */}
-      <div className="md:flex-1 flex items-center justify-center bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border-r md:border-b border-t border-l border-black p-6  shadow-lg md:max-w-3/4 md:my-16">
-      <motion.div 
-        className='absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-50 z-0' 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.5 }}
-        transition={{ duration: 1, ease: "easeInOut" }}
-      ></motion.div>
+      <div className="md:flex-1 flex items-center justify-center bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border-r md:border-b border-t border-l border-black p-6 shadow-lg md:max-w-3/4 md:my-16">
+        <motion.div
+          className='absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-50 z-0'
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.5 }}
+          transition={{ duration: 1, ease: "easeInOut" }}
+        ></motion.div>
         <motion.video
           key={selectedVideo}
           src={selectedVideo}
           controls
-          className="w-full h-auto md:h-3/4 object-cover z-50"
+          className="w-full h-auto md:h-3/4 object-cover z-50 border border-black"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         />
       </div>
 
+      {/* Thumbnails Section */}
       <div className="flex md:flex-col items-center justify-center p-4 space-y-4 md:w-1/4 bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border border-b md:border-t border-r border-black shadow-lg md:mr-2 md:my-16">
         {videos.map((video) => (
           <motion.div
             key={video.id}
-            className="cursor-pointer"
+            className={`cursor-pointer ${selectedVideo === video.src ? 'border-4 border-white-500' : ''} transition-transform duration-300`}
             onClick={() => setSelectedVideo(video.src)}
             initial={{ scale: 0.9 }}
             whileHover={{ scale: 1.02 }}
@@ -61,7 +62,6 @@ const VideoGallery = () => {
       </div>
     </div>
   );
-
 };
 
 export default VideoGallery;
