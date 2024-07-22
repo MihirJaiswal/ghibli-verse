@@ -101,10 +101,10 @@ const MovieC: React.FC = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 1.1 }}
-              target="_blank" // Open link in new tab
-              rel="noopener noreferrer" // Ensure security
+              target="_blank" 
+              rel="noopener noreferrer" 
             >
-              <FaPlay size={20} /> {/* Add play icon */}
+              <FaPlay size={20} /> 
               Watch Trailer
             </motion.a>
           </div>

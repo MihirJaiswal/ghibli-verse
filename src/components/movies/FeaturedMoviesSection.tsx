@@ -17,7 +17,7 @@ interface Movie {
 }
 
 interface FeaturedMoviesSliderProps {
-  count: number; // Number of featured movies to display
+  count: number; 
 }
 
 const truncateTitle = (title: string, wordLimit: number) => {

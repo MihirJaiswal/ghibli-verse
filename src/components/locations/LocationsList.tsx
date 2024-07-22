@@ -104,7 +104,7 @@ const LocationsList: React.FC = () => {
               climate={location.climate}
               terrain={location.terrain}
               surface_water={location.surface_water}
-              image={locationImages[location.name] || '/path/to/default.jpg'} // Ensure locationImages is used properly
+              image={locationImages[location.name] || '/path/to/default.jpg'} 
             />
           ))}
         </div>

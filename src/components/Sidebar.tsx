@@ -1,5 +1,4 @@
 'use client'
-// Import necessary modules and components
 import React from 'react';
 import { sidebarLinks } from '../../constant/index';
 import { usePathname } from 'next/navigation';

@@ -3,7 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import { characterImages } from '../../../constant';
 import { FaBirthdayCake, FaVenusMars, FaEye, FaTint, FaPaw  } from 'react-icons/fa';
-import { colorMap } from '../../lib/colorMap'; // Adjust path if necessary
+import { colorMap } from '../../lib/colorMap'; 
 
 interface CharacterCardProps {
   id: string;
@@ -30,7 +30,6 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
 }) => {
   const imageUrl = characterImages[name] || '/path/to/default.jpg';
 
-  // Helper function to render a color dot
   const renderColorDot = (color: string | undefined) => {
     const colorHex = color ? colorMap[color] || color : 'transparent';
     return (

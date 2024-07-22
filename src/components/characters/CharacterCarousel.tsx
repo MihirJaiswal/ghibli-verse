@@ -50,8 +50,8 @@ const CharacterCarousel: React.FC = () => {
               <Image
                 src={currentCharacter.image}
                 alt={characterNames[currentIndex]}
-                width={400}  // Adjust width as needed
-                height={400} // Adjust height as needed
+                width={400}  
+                height={400} 
                 className='object-contain'
               />
               <div className='absolute top-2 right-2 text-2xl z-20 font-extrabold border rounded-full px-4 py-2.5 bg-white'>

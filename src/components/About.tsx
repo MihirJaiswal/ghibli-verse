@@ -11,7 +11,6 @@ const AboutUs = () => {
         animate={{ opacity: 0.5 }}
         transition={{ duration: 1, ease: "easeInOut" }}
       ></motion.div>
-      {/* Animated Header */}
       <div className='relative'>
         <motion.div
           className="text-center mb-12"

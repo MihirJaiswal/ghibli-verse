@@ -17,7 +17,7 @@ const CharacterGrid: React.FC = () => {
   const [movieFilter, setMovieFilter] = useState<string>('All');
   const [speciesFilter, setSpeciesFilter] = useState<string>('All');
   const [genderFilter, setGenderFilter] = useState<string>('All');
-  const [visibleCount, setVisibleCount] = useState(4); // Number of characters to show initially
+  const [visibleCount, setVisibleCount] = useState(4); 
   const router = useRouter();
 
   useEffect(() => {
@@ -83,7 +83,7 @@ const CharacterGrid: React.FC = () => {
   };
 
   const handleLoadMore = () => {
-    setVisibleCount(prevCount => prevCount + 4); // Increase count by 4
+    setVisibleCount(prevCount => prevCount + 4); 
   };
 
   if (loading) {

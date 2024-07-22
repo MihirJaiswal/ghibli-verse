@@ -2,9 +2,9 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { FaArrowLeft, FaArrowRight, FaPlay } from 'react-icons/fa'; // Import FaPlay icon
-import { getMovies } from '../../services/ghibli'; // Adjust the import path as needed
-import { youtubeLinks } from '../../../constant/index'; // Import the YouTube links
+import { FaArrowLeft, FaArrowRight, FaPlay } from 'react-icons/fa'; 
+import { getMovies } from '../../services/ghibli'; 
+import { youtubeLinks } from '../../../constant/index';
 
 const HeroMovie: React.FC = () => {
   const [movies, setMovies] = useState<any[]>([]);
@@ -120,10 +120,10 @@ const HeroMovie: React.FC = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 1.1 }}
-              target="_blank" // Open link in new tab
-              rel="noopener noreferrer" // Ensure security
+              target="_blank" 
+              rel="noopener noreferrer" 
             >
-              <FaPlay size={20} /> {/* Add play icon */}
+              <FaPlay size={20} /> 
               Watch Trailer
             </motion.a>
           </div>

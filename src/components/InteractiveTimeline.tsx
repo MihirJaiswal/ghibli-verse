@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import { getMovies } from '../services/ghibli'; // Adjust the import path as needed
+import { getMovies } from '../services/ghibli'; 
 
 const InteractiveTimeline = () => {
   const [movies, setMovies] = useState<any[]>([]);

@@ -6,11 +6,11 @@ const Loader: React.FC = () => {
     <div className="flex justify-center items-center h-screen">
       <div className="flex flex-col items-center justify-center">
         <Image
-          src="/loader.gif" // Replace with the path to your loader image
+          src="/loader.gif" 
           alt="Loading..."
           height={200}
-          width={200} // Ensures the image fills the container
-          objectFit="contain w-44 h-auto" // Adjusts how the image fits within the container
+          width={200} 
+          objectFit="contain w-44 h-auto" 
         />
         <p>Loading...</p>
       </div>

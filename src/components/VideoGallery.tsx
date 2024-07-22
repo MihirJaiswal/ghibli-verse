@@ -11,8 +11,6 @@ const videos = [
 
 const VideoGallery = () => {
   const [selectedVideo, setSelectedVideo] = useState(videos[0].src);
-
-  // Automatically play the initial video when the component mounts
   useEffect(() => {
     const videoElement = document.querySelector('video');
     if (videoElement) {
@@ -41,7 +39,6 @@ const VideoGallery = () => {
         />
       </div>
 
-      {/* Thumbnails Section */}
       <div className="flex md:flex-col items-center justify-center p-4 space-y-4 md:w-1/4 bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border border-b md:border-t border-r border-black shadow-lg md:mr-2 md:my-16">
         {videos.map((video) => (
           <motion.div

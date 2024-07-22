@@ -15,7 +15,7 @@ const AllCharacters: React.FC<AllCharactersProps> = ({ names }) => {
   const [movieFilter, setMovieFilter] = useState('All');
   const [genderFilter, setGenderFilter] = useState('All');
   const [speciesFilter, setSpeciesFilter] = useState('All');
-  const [visibleCount, setVisibleCount] = useState(8); // Number of characters to show initially
+  const [visibleCount, setVisibleCount] = useState(8); 
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value;
@@ -67,7 +67,7 @@ const AllCharacters: React.FC<AllCharactersProps> = ({ names }) => {
   };
 
   const handleLoadMore = () => {
-    setVisibleCount(prevCount => prevCount + 8); // Increase count by 8
+    setVisibleCount(prevCount => prevCount + 8); 
   };
 
   return (
@@ -95,7 +95,7 @@ const AllCharacters: React.FC<AllCharactersProps> = ({ names }) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
           {filteredNames.slice(0, visibleCount).map((name) => {
             const movie = characterMovies[name] || 'Unknown Movie';
-            const imageUrl = characterImages[name] || '/default-character.webp'; // Fallback image URL
+            const imageUrl = characterImages[name] || '/default-character.webp';
             const gender = characterDetails[name]?.gender || 'Unknown';
             const species = characterDetails[name]?.species || 'Unknown';
 
