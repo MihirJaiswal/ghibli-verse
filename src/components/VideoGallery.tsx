@@ -1,24 +1,68 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FaPlay } from 'react-icons/fa';
 
-const videos = [
+interface Video {
+  id: number;
+  src: string;
+  thumbnail: string;
+}
+
+const videos: Video[] = [
   { id: 1, src: '/spiritedaway.mp4', thumbnail: '/thumbnail1.png' },
   { id: 2, src: '/poppyhill.mp4', thumbnail: '/thumbnail2.png' },
   { id: 3, src: '/arrietty.mp4', thumbnail: '/thumbnail3.png' },
 ];
 
 const VideoGallery = () => {
-  const [selectedVideo, setSelectedVideo] = useState(videos[0].src);
+  const [selectedVideo, setSelectedVideo] = useState<string>(videos[0].src);
+  const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
-    const videoElement = document.querySelector('video');
+    const videoElement = videoRef.current;
+
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      const entry = entries[0];
+      if (videoElement) {
+        if (entry.isIntersecting) {
+          videoElement.play();
+          setIsVideoPlaying(true);
+        } else {
+          videoElement.pause();
+          setIsVideoPlaying(false);
+        }
+      }
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.5,
+    });
+
     if (videoElement) {
-      videoElement.play();
+      observer.observe(videoElement);
     }
+
+    return () => {
+      if (videoElement) {
+        observer.unobserve(videoElement);
+      }
+    };
   }, [selectedVideo]);
+
+  const handleVideoClick = () => {
+    const videoElement = videoRef.current;
+    if (videoElement) {
+      if (isVideoPlaying) {
+        videoElement.pause();
+      } else {
+        videoElement.play();
+      }
+      setIsVideoPlaying(!isVideoPlaying);
+    }
+  };
 
   return (
     <div className="flex relative flex-col md:flex-row md:min-h-screen w-full p-2 md:p-4">
@@ -31,10 +75,12 @@ const VideoGallery = () => {
           transition={{ duration: 1, ease: "easeInOut" }}
         ></motion.div>
         <motion.video
+          ref={videoRef}
           key={selectedVideo}
           src={selectedVideo}
           controls
           className="w-full h-auto md:h-3/4 object-cover z-50 border border-black"
+          onClick={handleVideoClick}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
